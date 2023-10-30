@@ -197,7 +197,10 @@
           <artifactId>apache-rat-plugin</artifactId>
           <configuration>
             <excludes>
-              <exclude>report/**</exclude>
+              <!-- Ignore Report Folder -->
+			           <exclude>report/**</exclude>
+			           <!-- Ignore Sonar Cloud Action -->
+			           <exclude>.github/workflows/build.yml</exclude>
               <exclude>src/test/resources/images/**/*</exclude>
               <exclude>src/test/resources/IMAGING-*/*</exclude>
               <exclude>src/test/data/**/*.xpm</exclude>
