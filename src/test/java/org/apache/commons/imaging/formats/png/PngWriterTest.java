@@ -26,6 +26,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import jdk.jfr.internal.LogLevel;
+import jdk.jfr.internal.LogTag;
+import jdk.jfr.internal.Logger;
 import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.palette.Palette;
 import org.apache.commons.imaging.palette.PaletteFactory;
@@ -77,7 +80,7 @@ public class PngWriterTest extends AbstractPngTest {
     @Test
     public void testPaletteFactory() throws IOException {
         final File imageFile = getValidPngImages().get(5);
-
+        Logger.log(LogTag.JFR_SYSTEM, LogLevel.INFO, String.format("IMAGE BEING LOADED %s", imageFile.getName()));
         final BufferedImage image = Imaging.getBufferedImage(imageFile);
         final PngImagingParameters params = new PngImagingParameters();
         params.setForceIndexedColor(true);
