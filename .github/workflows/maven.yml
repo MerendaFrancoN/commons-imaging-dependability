@@ -28,7 +28,7 @@ jobs:
       matrix:
 #        os: [windows-latest, ubuntu-latest]
 #        os: [windows-latest, macos-latest]
-        os: [windows-latest]
+        os: [ubuntu-latest]
         java: [ 8, 11, 17, 21 ]
         experimental: [false]
 #        include:
