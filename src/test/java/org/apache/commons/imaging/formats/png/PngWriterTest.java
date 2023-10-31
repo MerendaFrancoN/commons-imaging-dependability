@@ -24,8 +24,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.palette.Palette;
@@ -50,7 +52,7 @@ public class PngWriterTest extends AbstractPngTest {
         }
     }
 
-    private List<File> getValidPngImages() throws IOException {
+    private HashMap<String, File> getValidPngImages() throws IOException {
         final List<File> result = new ArrayList<>();
 
         for (final File imageFile : getPngImages()) {
@@ -58,12 +60,13 @@ public class PngWriterTest extends AbstractPngTest {
                 result.add(imageFile);
             }
         }
-        return result;
+        return result.stream()
+                .collect(Collectors.toMap(File::getName, file -> file, (existing, replacement) -> existing, HashMap::new));
     }
 
     @Test
     public void testNullParameters() throws IOException {
-        final File imageFile = getValidPngImages().get(5);
+        final File imageFile = getValidPngImages().get("Oregon Scientific DS6639 - DSC_0307 - small.png");
 
         final BufferedImage image = Imaging.getBufferedImage(imageFile);
 
@@ -77,7 +80,7 @@ public class PngWriterTest extends AbstractPngTest {
 
     @Test
     public void testPaletteFactory() throws IOException {
-        final File imageFile = getValidPngImages().get(5);
+        final File imageFile = getValidPngImages().get("Oregon Scientific DS6639 - DSC_0307 - small.png");
         java.util.logging.Logger.getAnonymousLogger().log(Level.INFO,String.format("IMAGE BEING LOADED %s", imageFile.getName()));
         final BufferedImage image = Imaging.getBufferedImage(imageFile);
         final PngImagingParameters params = new PngImagingParameters();
