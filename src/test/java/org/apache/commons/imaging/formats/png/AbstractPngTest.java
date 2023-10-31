@@ -19,6 +19,7 @@ package org.apache.commons.imaging.formats.png;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.imaging.AbstractImagingTest;
@@ -37,6 +38,8 @@ public abstract class AbstractPngTest extends AbstractImagingTest {
     }
 
     protected List<File> getPngImages() throws IOException, ImagingException {
+        List<File> testImages = getTestImages(IMAGE_FILTER);
+        testImages.sort(Comparator.comparing(File::getName));
         return getTestImages(IMAGE_FILTER);
     }
 

@@ -51,6 +51,7 @@ public class PngWriterTest extends AbstractPngTest {
 
     private List<File> getValidPngImages() throws IOException {
         final List<File> result = new ArrayList<>();
+
         for (final File imageFile : getPngImages()) {
             if (!isInvalidPngTestFile(imageFile)) {
                 result.add(imageFile);
@@ -61,7 +62,7 @@ public class PngWriterTest extends AbstractPngTest {
 
     @Test
     public void testNullParameters() throws IOException {
-        final File imageFile = getValidPngImages().get(0);
+        final File imageFile = getValidPngImages().get(5);
 
         final BufferedImage image = Imaging.getBufferedImage(imageFile);
 
@@ -75,7 +76,7 @@ public class PngWriterTest extends AbstractPngTest {
 
     @Test
     public void testPaletteFactory() throws IOException {
-        final File imageFile = getValidPngImages().get(0);
+        final File imageFile = getValidPngImages().get(5);
 
         final BufferedImage image = Imaging.getBufferedImage(imageFile);
         final PngImagingParameters params = new PngImagingParameters();
