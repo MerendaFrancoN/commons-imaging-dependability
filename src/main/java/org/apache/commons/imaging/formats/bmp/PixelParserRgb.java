@@ -64,7 +64,7 @@ class PixelParserRgb extends AbstractPixelParserSimple {
         }
         case 16: {
             final int data = read2Bytes("Pixel", is, "BMP Image Data", ByteOrder.LITTLE_ENDIAN);
-            final int blue = (0x1f & (data >> 0)) << 3;
+            final int blue = (0x1f & data << 3;
             final int green = (0x1f & (data >> 5)) << 3;
             final int red = (0x1f & (data >> 10)) << 3;
             final int alpha = 0xff;
