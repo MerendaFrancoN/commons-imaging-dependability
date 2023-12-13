@@ -93,7 +93,7 @@ public final class BinaryFunctions {
     public static void logCharQuad(final String msg, final int i) {
         LOGGER.finest(msg + ": '" + (char) (0xff & (i >> 24))
                 + (char) (0xff & (i >> 16)) + (char) (0xff & (i >> 8))
-                + (char) (0xff & (i >> 0)) + "'");
+                + (char) (0xff & i) + "'");
 
     }
 
