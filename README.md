@@ -111,6 +111,7 @@ Additional Resources
 # Software Dependability Tools - Usage
 
 ## 1. SonarCloud
+- Link to access data: https://sonarcloud.io/project/overview?id=MerendaFrancoN_commons-imaging-dependability
 
 ## 2. Code Coverage Tools
 ### 1. Cobertura
