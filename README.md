@@ -114,8 +114,18 @@ Additional Resources
 
 ## 2. Code Coverage Tools
 ### 1. Cobertura
+
 ### 2. JaCoCo
-### 3. CodeCov
+- Run  Jacoco Code Coverage Report:
+  - `mvn clean test jacoco:report`
+
+- **Check** -> Output Folder: `target/site/jacoco`
+  - -> Output Report in HTML: `target/site/jacoco/index.html`
+  - -> Output Report in CSV: `target/site/jacoco/index.html`
+
+### 3. [CodeCov](https://about.codecov.io/)
+- Link to access data: https://app.codecov.io/gh/MerendaFrancoN/commons-imaging-dependability
+  - Data is uploaded when a commit is pushed to `master` or for each PR.
 
 ## 3. Mutation Testing Tool
 ### 1. [PiTest](https://pitest.org/quickstart/maven/) 
