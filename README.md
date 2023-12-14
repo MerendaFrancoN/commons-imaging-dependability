@@ -106,3 +106,53 @@ Additional Resources
 + `#apache-commons` IRC channel on `irc.freenode.org`
 
 [ml]:https://commons.apache.org/mail-lists.html
+
+
+# Software Dependability Tools - Usage
+
+## 1. SonarCloud
+
+## 2. Code Coverage Tools
+### 1. Cobertura
+### 2. JaCoCo
+### 3. CodeCov
+
+## 3. Mutation Testing Tool
+### 1. PiTest
+
+## 4. Benchmarking Tools
+#### 1. Java Microbenchmarking Tool (JMH)
+
+## 5. Automated Testing Generation Tools
+### 1. EvoSuite - Use Java 8
+- EvoSuite Tests Generation for all classes - Only Runs with **`Java 8`** !
+
+        Syntax: mvn -DmemoryInMB=<amount_mb> -Dcores=<number_of_cores> evosuite:generate evosuite:export test
+        Example: mvn -DmemoryInMB=8000 -Dcores=6 evosuite:generate evosuite:export test
+
+
+- EvoSuite Tests Generation for specific classes - Only Runs with **`Java 8`** !
+
+        Syntax: mvn -DmemoryInMB=<amount_mb> -Dcores=<number_of_cores> evosuite:generate evosuite:export test -DcutsFile=<path_to_file_where_specific_classes_are_defined.txt>
+        Example: mvn -DmemoryInMB=2000 -Dcores=2 evosuite:generate evosuite:export test -DcutsFile=.evosuite/cutsFile.txt
+
+Example of `cutsFile.txt`:
+
+`org.apache.commons.imaging.ImageInfo, org.apache.commons.imaging.ImageFormats`
+
+### 2. Randoop - Use Java 8 
+1. Download last version [jar](https://randoop.github.io/randoop/manual/index.html#getting_randoop)
+2. Example for generating tests with randoop : `java -Xmx3000m -classpath /Users/stormtrooper/SoftwareProjects/commons-imaging/target/commons-imaging-1.0-SNAPSHOT.jar:/Users/stormtrooper/Downloads/randoop-4.3.2/randoop-all-4.3.2.jar randoop.main.Main gentests --testclass=org.apache.commons.imaging.ImageInfo --output-limit=10`
+
+More on: [Randoop - Getting Started](https://randoop.github.io/randoop/manual/index.html#getting_randoop)
+
+## Security - Related Tools
+### 1. SpotBug
+1. Run -> `mvn spotbugs:check`
+2. Run -> `mvn spotbugs:gui` - To run a graphical ui to see the report graphically.
+
+--> It's also configured as an action in the CI, you can see it in the github actions as well.
+
+### 2. Owasp DC
+1. Run -> `mvn org.owasp:dependency-check-maven:check`
+2. Check the report in `target/dependency-check-report.html`
