@@ -126,15 +126,16 @@ Additional Resources
 ## 5. Automated Testing Generation Tools
 ### 1. EvoSuite - Use Java 8
 - EvoSuite Tests Generation for all classes - Only Runs with **`Java 8`** !
-
-        Syntax: mvn -DmemoryInMB=<amount_mb> -Dcores=<number_of_cores> evosuite:generate evosuite:export test
-        Example: mvn -DmemoryInMB=8000 -Dcores=6 evosuite:generate evosuite:export test
+- Syntax:
+  - `mvn -DmemoryInMB=<amount_mb> -Dcores=<number_of_cores> evosuite:generate evosuite:export test`
+- Example: 
+  - `mvn -DmemoryInMB=8000 -Dcores=6 evosuite:generate evosuite:export test`
 
 
 - EvoSuite Tests Generation for specific classes - Only Runs with **`Java 8`** !
-
-        Syntax: mvn -DmemoryInMB=<amount_mb> -Dcores=<number_of_cores> evosuite:generate evosuite:export test -DcutsFile=<path_to_file_where_specific_classes_are_defined.txt>
-        Example: mvn -DmemoryInMB=2000 -Dcores=2 evosuite:generate evosuite:export test -DcutsFile=.evosuite/cutsFile.txt
+  - Syntax: `mvn -DmemoryInMB=<amount_mb> -Dcores=<number_of_cores> evosuite:generate evosuite:export test -DcutsFile=<path_to_file_where_specific_classes_are_defined.txt>`
+- Example:
+  - `mvn -DmemoryInMB=2000 -Dcores=2 evosuite:generate evosuite:export test -DcutsFile=.evosuite/cutsFile.txt`
 
 Example of `cutsFile.txt`:
 
@@ -142,7 +143,10 @@ Example of `cutsFile.txt`:
 
 ### 2. Randoop - Use Java 8 
 1. Download last version [jar](https://randoop.github.io/randoop/manual/index.html#getting_randoop)
-2. Example for generating tests with randoop : `java -Xmx3000m -classpath /Users/stormtrooper/SoftwareProjects/commons-imaging/target/commons-imaging-1.0-SNAPSHOT.jar:/Users/stormtrooper/Downloads/randoop-4.3.2/randoop-all-4.3.2.jar randoop.main.Main gentests --testclass=org.apache.commons.imaging.ImageInfo --output-limit=10`
+2. Example for generating tests with randoop : 
+```bash 
+java -Xmx3000m -classpath /Users/stormtrooper/SoftwareProjects/commons-imaging/target/commons-imaging-1.0-SNAPSHOT.jar:/Users/stormtrooper/Downloads/randoop-4.3.2/randoop-all-4.3.2.jar randoop.main.Main gentests --testclass=org.apache.commons.imaging.ImageInfo --output-limit=10
+```
 
 More on: [Randoop - Getting Started](https://randoop.github.io/randoop/manual/index.html#getting_randoop)
 
