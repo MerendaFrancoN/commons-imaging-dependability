@@ -139,6 +139,11 @@ Additional Resources
 
 ## 4. Benchmarking Tools
 #### 1. Java Microbenchmarking Tool (JMH)
+--> Usage info - https://www.baeldung.com/java-microbenchmark-harness
+
+1. Mark all the tests that you could need to benchmark using Java Microbenchmark annotations.
+2. Run 
+
 
 ## 5. Automated Testing Generation Tools
 ### 1. [EvoSuite](https://www.evosuite.org/) - Use Java 8
