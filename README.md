@@ -118,13 +118,19 @@ Additional Resources
 ### 3. CodeCov
 
 ## 3. Mutation Testing Tool
-### 1. PiTest
+### 1. [PiTest](https://pitest.org/quickstart/maven/) 
+1. Run Mutation Coverage and generate report in html: 
+ - **Run**: `mvn org.pitest:pitest-maven:mutationCoverage -DoutputFormats=HTML`
+ - **Check**: `target/pit-reports/index.html`
+2. Run Mutation Coverage with specific mutation operator:mvn org.pitest:pitest-maven:mutationCoverage -DmutationOperators=YOUR_CUSTOM_OPERATOR
+   - Syntax: `mvn org.pitest:pitest-maven:mutationCoverage -DmutationOperators=YOUR_CUSTOM_OPERATOR`
+   - Example: `mvn org.pitest:pitest-maven:mutationCoverage -Dmutators=ALL` - Tries with all mutation operators.
 
 ## 4. Benchmarking Tools
 #### 1. Java Microbenchmarking Tool (JMH)
 
 ## 5. Automated Testing Generation Tools
-### 1. EvoSuite - Use Java 8
+### 1. [EvoSuite](https://www.evosuite.org/) - Use Java 8
 - EvoSuite Tests Generation for all classes - Only Runs with **`Java 8`** !
 - Syntax:
   - `mvn -DmemoryInMB=<amount_mb> -Dcores=<number_of_cores> evosuite:generate evosuite:export test`
@@ -141,7 +147,7 @@ Example of `cutsFile.txt`:
 
 `org.apache.commons.imaging.ImageInfo, org.apache.commons.imaging.ImageFormats`
 
-### 2. Randoop - Use Java 8 
+### 2. [Randoop](https://randoop.github.io/randoop/) - Use Java 8 
 1. Download last version [jar](https://randoop.github.io/randoop/manual/index.html#getting_randoop)
 2. Example for generating tests with randoop : 
 ```bash 
@@ -151,12 +157,12 @@ java -Xmx3000m -classpath /Users/stormtrooper/SoftwareProjects/commons-imaging/t
 More on: [Randoop - Getting Started](https://randoop.github.io/randoop/manual/index.html#getting_randoop)
 
 ## Security - Related Tools
-### 1. SpotBug
+### 1. [SpotBug](https://spotbugs.github.io/)
 1. Run -> `mvn spotbugs:check`
 2. Run -> `mvn spotbugs:gui` - To run a graphical ui to see the report graphically.
 
 --> It's also configured as an action in the CI, you can see it in the github actions as well.
 
-### 2. Owasp DC
+### 2. [Owasp DC](https://owasp.org/www-project-dependency-check/)
 1. Run -> `mvn org.owasp:dependency-check-maven:check`
 2. Check the report in `target/dependency-check-report.html`
