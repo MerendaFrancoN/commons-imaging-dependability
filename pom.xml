@@ -209,19 +209,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.evosuite.plugins</groupId>
-                <artifactId>evosuite-maven-plugin</artifactId>
-                <version>1.0.6</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare</goal>
-                        </goals>
-                        <phase>process-test-classes</phase>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <version>1.8</version>
@@ -556,6 +543,32 @@
                                 <goals>
                                     <goal>check</goal>
                                 </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>evosuite-profile</id>
+            <activation>
+                <property>
+                    <name>runEvosuite</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.evosuite.plugins</groupId>
+                        <artifactId>evosuite-maven-plugin</artifactId>
+                        <version>1.0.6</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>prepare</goal>
+                                </goals>
+                                <phase>process-test-classes</phase>
                             </execution>
                         </executions>
                     </plugin>
