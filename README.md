@@ -142,7 +142,7 @@ Additional Resources
 --> Usage info - https://www.baeldung.com/java-microbenchmark-harness
 
 1. Mark all the tests that you could need to benchmark using Java Microbenchmark annotations.
-2. Run 
+2. Run `src/test/java/org/apache/commons/imaging/BenchmarkRunner.java` - `Main` function to run benchmarks.
 
 
 ## 5. Automated Testing Generation Tools
