@@ -159,9 +159,9 @@
 %% the work being presented. Separate the keywords with commas.
 \keywords{Software Dependability, Apache Commons Imaging, Software Analytics, SonarCloud, Software Testing Tools, Code Coverage, JaCoCo, CodeCov, Mutation Testing, PiTest, Java Microbenchmark Harness, JMH,  Automated Test Case Generation, EvoSuite, Randoop, Software Vulnerabilities, OWASP Dependability Checker, FindSecBugs, Bug Fixing, Code Quality, Software Engineering}
 
-\received{20 February 2007}
-\received[revised]{12 March 2009}
-\received[accepted]{5 June 2009}
+%% \received{20 February 2007}
+%% \received[revised]{12 March 2009}
+%% \received[accepted]{5 June 2009}
 
 %%
 %% This command processes the author and affiliation and title
@@ -196,79 +196,12 @@ As we look towards the future, the principles of software dependability will con
 
 The ongoing advancements in technology, rising complexity of software, and its critical role in societal functions, as highlighted by B. Randell and J.C. Laprie, make the study of software dependability more relevant than ever [9][10]. Today, as software systems become increasingly intricate and integral to all aspects of life, from personal devices to global networks, the principles of software dependability continue to evolve, necessitating ongoing research and adaptation.
 
-\section{Apache Commons Imaging}
-As noted in the introduction, the ``\verb|acmart|'' document class can
-be used to prepare many different kinds of documentation --- a
-dual-anonymous initial submission of a full-length technical paper, a
-two-page SIGGRAPH Emerging Technologies abstract, a ``camera-ready''
-journal article, a SIGCHI Extended Abstract, and more --- all by
-selecting the appropriate {\itshape template style} and {\itshape
-  template parameters}.
+\subsection{Apache Commons Imaging}
+Apache Commons Imaging is a powerful open-source Java library that resides within the Apache Commons project. This library focuses on simplifying the complexities of image processing for Java developers. Boasting support for a diverse range of image formats, including popular ones such as JPEG, PNG, GIF, BMP, and TIFF, provides a versatile toolkit for developers working with images.
 
-This document will explain the major features of the document
-class. For further information, the {\itshape \LaTeX\ User's Guide} is
-available from
-\url{https://www.acm.org/publications/proceedings-template}.
+One notable aspect of Apache Commons Imaging is its commitment to cross-platform compatibility, ensuring that developers can seamlessly integrate the library into various operating systems and environments. The project maintains an active and collaborative community, welcoming contributions and fostering an environment conducive to continual improvement.
 
-\subsection{Template Styles}
-
-The primary parameter given to the ``\verb|acmart|'' document class is
-the {\itshape template style} which corresponds to the kind of publication
-or SIG publishing the work. This parameter is enclosed in square
-brackets and is a part of the {\verb|documentclass|} command:
-\begin{verbatim}
-  \documentclass[STYLE]{acmart}
-\end{verbatim}
-
-Journals use one of three template styles. All but three ACM journals
-use the {\verb|acmsmall|} template style:
-\begin{itemize}
-\item {\verb|acmsmall|}: The default journal template style.
-\item {\verb|acmlarge|}: Used by JOCCH and TAP.
-\item {\verb|acmtog|}: Used by TOG.
-\end{itemize}
-
-The majority of conference proceedings documentation will use the {\verb|acmconf|} template style.
-\begin{itemize}
-\item {\verb|acmconf|}: The default proceedings template style.
-\item{\verb|sigchi|}: Used for SIGCHI conference articles.
-\item{\verb|sigchi-a|}: Used for SIGCHI ``Extended Abstract'' articles.
-\item{\verb|sigplan|}: Used for SIGPLAN conference articles.
-\end{itemize}
-
-\subsection{Template Parameters}
-
-In addition to specifying the {\itshape template style} to be used in
-formatting your work, there are a number of {\itshape template parameters}
-which modify some part of the applied template style. A complete list
-of these parameters can be found in the {\itshape \LaTeX\ User's Guide.}
-
-Frequently-used parameters, or combinations of parameters, include:
-\begin{itemize}
-\item {\verb|anonymous,review|}: Suitable for a ``dual-anonymous''
-  conference submission. Anonymizes the work and includes line
-  numbers. Use with the \verb|\acmSubmissionID| command to print the
-  submission's unique ID on each page of the work.
-\item{\verb|authorversion|}: Produces a version of the work suitable
-  for posting by the author.
-\item{\verb|screen|}: Produces colored hyperlinks.
-\end{itemize}
-
-This document uses the following string as the first command in the
-source file:
-\begin{verbatim}
-\documentclass[manuscript,screen,review]{acmart}
-\end{verbatim}
-
-\section{Modifications}
-
-Modifying the template --- including but not limited to: adjusting
-margins, typeface sizes, line spacing, paragraph and list definitions,
-and the use of the \verb|\vspace| command to manually adjust the
-vertical spacing between elements of your work --- is not allowed.
-
-{\bfseries Your document will be returned to you for revision if
-  modifications are discovered.}
+In conclusion, Apache Commons Imaging stands out as an essential tool for Java developers engaged in image-related tasks. Its extensive format support, versatile manipulation capabilities, and commitment to collaboration make it a reliable choice for projects requiring robust image processing functionality.
 
 \section{SonarCloud}
 
