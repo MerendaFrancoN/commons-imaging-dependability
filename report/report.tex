@@ -246,14 +246,31 @@ To organize our tasks based on the errors found in \textbf{SonarCloud}, we creat
 To measure and improve the robustness of the Apache Commons Imaging project's dependability, this section focuses on three key testing tools. First, we delve into the realm of code coverage using JaCoCo and CodeCov, unraveling their importance and impact. Following that, we explore mutation testing with PiTest, evaluating the resilience of test cases. The journey concludes with Java Microbenchmark Harness, providing insights into performance characteristics. Together, these tools form a robust arsenal to fortify and enhance the project's reliability.
 
 \subsection{Code Coverage - JaCoCo}
-JaCoCo (Java Code Coverage) serves as a vital tool in assessing code coverage for Java applications, offering valuable insights into the extent of code execution during testing. It generates comprehensive reports that pinpoint the specific portions of the code exercised by tests.
+JaCoCo \cite{jacoco} (Java Code Coverage) serves as a vital tool in assessing code coverage for Java applications, offering valuable insights into the extent of code execution during testing. It generates comprehensive reports that pinpoint the specific portions of the code exercised by tests.
 
 Our investigation utilizing JaCoCo revealed a baseline of 77\% Instructions Coverage and 63\% Branches Coverage. This includes specific metrics such as 2448/6213 missed cyclomatic complexities, 3931/17299 missed lines, 511/2539 missed methods, and 16/431 missed classes.
 
-A notable feature of JaCoCo lies in its ability to set a minimum expected coverage. This proactive measure ensures that code changes maintain a predefined level of coverage, contributing significantly to the overall robustness of the project.
+A notable feature of JaCoCo lies in its ability to set a minimum expected coverage. This proactive measure ensures that code changes maintain a predefined level of coverage \cite{jacoco-check-mojo}, contributing significantly to the overall robustness of the project.
 
 \subsection{Code Coverage - CodeCov}
-TODO
+CodeCov \cite{codecov} emerges as an instrumental tool, orchestrating a meticulous examination of code coverage within the Apache Commons Imaging project. This sophisticated platform specializes in unraveling the intricacies of test suite effectiveness.
+
+\textbf{Key Metrics:}
+\begin{enumerate}
+    \item \textbf{Overall Code Coverage:} Our CodeCov analysis reveals a comprehensive code coverage of 71.17\% across the entirety of the project. This quantitative metric serves as a substantive indicator of the extent to which our test suites engage with the codebase.
+    
+    \item \textbf{Files with Lower Coverage Rates (Below 50\%):}
+    \begin{itemize}
+        \item \texttt{ColorTools.java}
+        \item \texttt{PixelDensity.java}
+        \item \texttt{AbstractImageParser.java}
+        \item \texttt{ImagingRuntimeException.java}
+        \item \texttt{ImagingFormatException.java}
+        \item \texttt{ImagingParameters.java}
+    \end{itemize}
+    
+    \item \textbf{Line Coverage:} A granular examination exposes that among the 17,299 lines constituting the project, the project covers 12,311 lines.
+\end{enumerate}
 
 \subsection{Mutation Testing - PiTest}
 TODO
