@@ -269,7 +269,7 @@
                             <exclude>src/test/data/**/*.hdr</exclude>
                             <exclude>src/main/resources/org/apache/commons/imaging/formats/xpm/rgb.txt</exclude>
                             <exclude>src/test/java/org/apache/commons/imaging/BenchmarkRunner.java</exclude>
-              <exclude>.asf.yaml</exclude>
+                            <exclude>.asf.yaml</exclude>
                             <exclude>.evosuite/**</exclude>
                             <exclude>.scaffolding_list.tmp</exclude>
                             <exclude>src/test/java/org/apache/commons/imaging/ImageFormats_ESTest_scaffolding.java
@@ -280,6 +280,7 @@
                             <exclude>spotbugs-security-include.xml</exclude>
                             <exclude>.github/workflows/spotbug-analysis.yml</exclude>
                             <exclude>src/test/java/org/apache/commons/imaging/ColorToolsTest.java</exclude>
+                            <exclude>src/test/java/org/apache/commons/imaging/PixelDensityTest.java</exclude>
                         </excludes>
                     </configuration>
                 </plugin>
@@ -333,17 +334,17 @@
             <version>1.0.6</version>
             <scope>test</scope>
         </dependency>
-    <dependency>
-      <groupId>org.openjdk.jmh</groupId>
-      <artifactId>jmh-core</artifactId>
-      <version>1.36</version>
-    </dependency>
-    <dependency>
-      <groupId>org.openjdk.jmh</groupId>
-      <artifactId>jmh-generator-annprocess</artifactId>
-      <version>1.36</version>
-    </dependency>
-  </dependencies>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>1.36</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>1.36</version>
+        </dependency>
+    </dependencies>
 
     <reporting>
         <plugins>
@@ -460,7 +461,7 @@
                         <exclude>src/test/data/**/*.hdr</exclude>
                         <exclude>src/main/resources/org/apache/commons/imaging/formats/xpm/rgb.txt</exclude>
                         <exclude>src/test/java/org/apache/commons/imaging/BenchmarkRunner.java</exclude>
-            <exclude>.asf.yaml</exclude>
+                        <exclude>.asf.yaml</exclude>
                         <exclude>.evosuite/**</exclude>
                         <exclude>.scaffolding_list.tmp</exclude>
                         <exclude>src/test/java/org/apache/commons/imaging/ImageFormats_ESTest_scaffolding.java</exclude>
@@ -469,6 +470,7 @@
                         <exclude>spotbugs-security-include.xml</exclude>
                         <exclude>.github/workflows/spotbug-analysis.yml</exclude>
                         <exclude>src/test/java/org/apache/commons/imaging/ColorToolsTest.java</exclude>
+                        <exclude>src/test/java/org/apache/commons/imaging/PixelDensityTest.java</exclude>
                     </excludes>
                 </configuration>
             </plugin>
