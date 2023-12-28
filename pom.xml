@@ -281,6 +281,7 @@
                             <exclude>.github/workflows/spotbug-analysis.yml</exclude>
                             <exclude>src/test/java/org/apache/commons/imaging/ColorToolsTest.java</exclude>
                             <exclude>src/test/java/org/apache/commons/imaging/PixelDensityTest.java</exclude>
+                            <exclude>src/test/java/org/apache/commons/imaging/formats/psd/dataparsers/DataParserBitmapTest.java</exclude>
                         </excludes>
                     </configuration>
                 </plugin>
@@ -471,6 +472,7 @@
                         <exclude>.github/workflows/spotbug-analysis.yml</exclude>
                         <exclude>src/test/java/org/apache/commons/imaging/ColorToolsTest.java</exclude>
                         <exclude>src/test/java/org/apache/commons/imaging/PixelDensityTest.java</exclude>
+                        <exclude>src/test/java/org/apache/commons/imaging/formats/psd/dataparsers/DataParserBitmapTest.java</exclude>
                     </excludes>
                 </configuration>
             </plugin>
