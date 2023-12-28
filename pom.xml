@@ -279,6 +279,7 @@
                             <exclude>spotbugs-security-exclude.xml</exclude>
                             <exclude>spotbugs-security-include.xml</exclude>
                             <exclude>.github/workflows/spotbug-analysis.yml</exclude>
+                            <exclude>src/test/java/org/apache/commons/imaging/ColorToolsTest.java</exclude>
                         </excludes>
                     </configuration>
                 </plugin>
@@ -467,6 +468,7 @@
                         <exclude>spotbugs-security-exclude.xml</exclude>
                         <exclude>spotbugs-security-include.xml</exclude>
                         <exclude>.github/workflows/spotbug-analysis.yml</exclude>
+                        <exclude>src/test/java/org/apache/commons/imaging/ColorToolsTest.java</exclude>
                     </excludes>
                 </configuration>
             </plugin>
