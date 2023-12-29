@@ -74,11 +74,13 @@ class PbmWriter implements PnmWriter {
                     }
                 } else {
                     os.write(Integer.toString(sample).getBytes(StandardCharsets.US_ASCII)); // max
-                                                                  // component
-                                                                  // value
+                    // component
+                    // value
 
-                    if (x != width - 1)
+                    if (x != width - 1) {
                         os.write(PnmConstants.PNM_SEPARATOR);
+                    }
+
                 }
             }
 
