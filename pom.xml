@@ -282,6 +282,7 @@
                             <exclude>src/test/java/org/apache/commons/imaging/ColorToolsTest.java</exclude>
                             <exclude>src/test/java/org/apache/commons/imaging/PixelDensityTest.java</exclude>
                             <exclude>src/test/java/org/apache/commons/imaging/formats/psd/dataparsers/DataParserBitmapTest.java</exclude>
+                            <exclude>src/test/java/org/apache/commons/imaging/formats/pnm/PbmWriterTest.java</exclude>
                         </excludes>
                     </configuration>
                 </plugin>
@@ -473,6 +474,7 @@
                         <exclude>src/test/java/org/apache/commons/imaging/ColorToolsTest.java</exclude>
                         <exclude>src/test/java/org/apache/commons/imaging/PixelDensityTest.java</exclude>
                         <exclude>src/test/java/org/apache/commons/imaging/formats/psd/dataparsers/DataParserBitmapTest.java</exclude>
+                        <exclude>src/test/java/org/apache/commons/imaging/formats/pnm/PbmWriterTest.java</exclude>
                     </excludes>
                 </configuration>
             </plugin>
