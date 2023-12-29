@@ -1,8 +1,7 @@
 package org.apache.commons.imaging;
 
-import org.junit.Test;
-
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class PixelDensityTest {
 
@@ -10,60 +9,60 @@ public class PixelDensityTest {
     public void testCreateFromPixelsPerCentimetre() {
         PixelDensity pixelDensity = PixelDensity.createFromPixelsPerCentimetre(300, 200);
 
-        assertNotNull(pixelDensity);
-        assertTrue(pixelDensity.isInCentimetres());
+        Assertions.assertNotNull(pixelDensity);
+        Assertions.assertTrue(pixelDensity.isInCentimetres());
 
-        assertFalse(pixelDensity.isInInches());
-        assertFalse(pixelDensity.isInMetres());
-        assertFalse(pixelDensity.isUnitless());
+        Assertions.assertFalse(pixelDensity.isInInches());
+        Assertions.assertFalse(pixelDensity.isInMetres());
+        Assertions.assertFalse(pixelDensity.isUnitless());
 
-        assertEquals(300, pixelDensity.getRawHorizontalDensity(), 0.001);
-        assertEquals(200, pixelDensity.getRawVerticalDensity(), 0.001);
+        Assertions.assertEquals(300, pixelDensity.getRawHorizontalDensity(), 0.001);
+        Assertions.assertEquals(200, pixelDensity.getRawVerticalDensity(), 0.001);
     }
 
     @Test
     public void testCreateFromPixelsPerInch() {
         PixelDensity pixelDensity = PixelDensity.createFromPixelsPerInch(300, 200);
 
-        assertNotNull(pixelDensity);
-        assertFalse(pixelDensity.isInCentimetres());
+        Assertions.assertNotNull(pixelDensity);
+        Assertions.assertFalse(pixelDensity.isInCentimetres());
 
-        assertFalse(pixelDensity.isInMetres());
-        assertFalse(pixelDensity.isUnitless());
-        assertTrue(pixelDensity.isInInches());
+        Assertions.assertFalse(pixelDensity.isInMetres());
+        Assertions.assertFalse(pixelDensity.isUnitless());
+        Assertions.assertTrue(pixelDensity.isInInches());
 
-        assertEquals(300, pixelDensity.getRawHorizontalDensity(), 0.001);
-        assertEquals(200, pixelDensity.getRawVerticalDensity(), 0.001);
+        Assertions.assertEquals(300, pixelDensity.getRawHorizontalDensity(), 0.001);
+        Assertions.assertEquals(200, pixelDensity.getRawVerticalDensity(), 0.001);
     }
 
     @Test
     public void testCreateFromPixelsPerMetre() {
         PixelDensity pixelDensity = PixelDensity.createFromPixelsPerMetre(300, 200);
 
-        assertNotNull(pixelDensity);
-        assertFalse(pixelDensity.isInCentimetres());
-        assertFalse(pixelDensity.isInInches());
-        assertFalse(pixelDensity.isUnitless());
+        Assertions.assertNotNull(pixelDensity);
+        Assertions.assertFalse(pixelDensity.isInCentimetres());
+        Assertions.assertFalse(pixelDensity.isInInches());
+        Assertions.assertFalse(pixelDensity.isUnitless());
 
-        assertTrue(pixelDensity.isInMetres());
+        Assertions.assertTrue(pixelDensity.isInMetres());
 
-        assertEquals(300, pixelDensity.getRawHorizontalDensity(), 0.001);
-        assertEquals(200, pixelDensity.getRawVerticalDensity(), 0.001);
+        Assertions.assertEquals(300, pixelDensity.getRawHorizontalDensity(), 0.001);
+        Assertions.assertEquals(200, pixelDensity.getRawVerticalDensity(), 0.001);
     }
 
     @Test
     public void testCreateUnitless() {
         PixelDensity pixelDensity = PixelDensity.createUnitless(300, 200);
 
-        assertNotNull(pixelDensity);
-        assertFalse(pixelDensity.isInCentimetres());
-        assertFalse(pixelDensity.isInInches());
-        assertFalse(pixelDensity.isInMetres());
+        Assertions.assertNotNull(pixelDensity);
+        Assertions.assertFalse(pixelDensity.isInCentimetres());
+        Assertions.assertFalse(pixelDensity.isInInches());
+        Assertions.assertFalse(pixelDensity.isInMetres());
 
-        assertTrue(pixelDensity.isUnitless());
+        Assertions.assertTrue(pixelDensity.isUnitless());
 
-        assertEquals(300, pixelDensity.getRawHorizontalDensity(), 0.001);
-        assertEquals(200, pixelDensity.getRawVerticalDensity(), 0.001);
+        Assertions.assertEquals(300, pixelDensity.getRawHorizontalDensity(), 0.001);
+        Assertions.assertEquals(200, pixelDensity.getRawVerticalDensity(), 0.001);
     }
 
     @Test
@@ -71,8 +70,8 @@ public class PixelDensityTest {
         final double expectedDensity = 300.0;
         PixelDensity pixelDensity = PixelDensity.createFromPixelsPerCentimetre(300, 200);
 
-        assertEquals(expectedDensity, pixelDensity.horizontalDensityCentimetres(), 0.001);
-        assertEquals(this.centimeterToInch(expectedDensity), pixelDensity.horizontalDensityInches(), 0.001);
+        Assertions.assertEquals(expectedDensity, pixelDensity.horizontalDensityCentimetres(), 0.001);
+        Assertions.assertEquals(this.centimeterToInch(expectedDensity), pixelDensity.horizontalDensityInches(), 0.001);
     }
 
     @Test
@@ -80,8 +79,8 @@ public class PixelDensityTest {
         final double expectedDensity = 300.0;
         PixelDensity pixelDensity = PixelDensity.createFromPixelsPerInch(300, 200);
 
-        assertEquals(expectedDensity, pixelDensity.horizontalDensityInches(), 0.001);
-        assertEquals(this.inchToCentimeter(expectedDensity), pixelDensity.horizontalDensityCentimetres(), 0.001);
+        Assertions.assertEquals(expectedDensity, pixelDensity.horizontalDensityInches(), 0.001);
+        Assertions.assertEquals(this.inchToCentimeter(expectedDensity), pixelDensity.horizontalDensityCentimetres(), 0.001);
     }
 
     @Test
@@ -89,8 +88,8 @@ public class PixelDensityTest {
         final double expectedDensity = 300.0;
         PixelDensity pixelDensity = PixelDensity.createFromPixelsPerMetre(300, 200);
 
-        assertEquals(expectedDensity, pixelDensity.horizontalDensityMetres(), 0.001);
-        assertEquals(expectedDensity / 100, pixelDensity.horizontalDensityCentimetres(), 0.001);
+        Assertions.assertEquals(expectedDensity, pixelDensity.horizontalDensityMetres(), 0.001);
+        Assertions.assertEquals(expectedDensity / 100, pixelDensity.horizontalDensityCentimetres(), 0.001);
     }
 
     @Test
@@ -98,8 +97,8 @@ public class PixelDensityTest {
         final double expectedDensity = 200.0;
         PixelDensity pixelDensity = PixelDensity.createFromPixelsPerCentimetre(300, 200);
 
-        assertEquals(expectedDensity, pixelDensity.verticalDensityCentimetres(), 0.001);
-        assertEquals(this.centimeterToInch(expectedDensity), pixelDensity.verticalDensityInches(), 0.001);
+        Assertions.assertEquals(expectedDensity, pixelDensity.verticalDensityCentimetres(), 0.001);
+        Assertions.assertEquals(this.centimeterToInch(expectedDensity), pixelDensity.verticalDensityInches(), 0.001);
 
     }
 
@@ -108,14 +107,14 @@ public class PixelDensityTest {
         final double expectedDensity = 200.0;
         PixelDensity pixelDensity = PixelDensity.createFromPixelsPerInch(300, 200);
 
-        assertEquals(expectedDensity, pixelDensity.verticalDensityInches(), 0.001);
-        assertEquals(this.inchToCentimeter(expectedDensity), pixelDensity.verticalDensityCentimetres(), 0.001);
+        Assertions.assertEquals(expectedDensity, pixelDensity.verticalDensityInches(), 0.001);
+        Assertions.assertEquals(this.inchToCentimeter(expectedDensity), pixelDensity.verticalDensityCentimetres(), 0.001);
     }
 
     @Test
     public void testVerticalDensityMetres() {
         PixelDensity pixelDensity = PixelDensity.createFromPixelsPerMetre(300, 200);
-        assertEquals(200.0, pixelDensity.verticalDensityMetres(), 0.001);
+        Assertions.assertEquals(200.0, pixelDensity.verticalDensityMetres(), 0.001);
     }
 
     private double centimeterToInch(double centimeters) {

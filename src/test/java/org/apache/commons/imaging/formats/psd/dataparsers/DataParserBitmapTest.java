@@ -2,16 +2,15 @@ package org.apache.commons.imaging.formats.psd.dataparsers;
 
 import org.apache.commons.imaging.formats.psd.PsdHeaderInfo;
 import org.apache.commons.imaging.formats.psd.PsdImageContents;
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class DataParserBitmapTest {
 
     @Test
     public void testGetBasicChannelsCount() {
         DataParserBitmap dataParserBitmap = new DataParserBitmap();
-        assertEquals(1, dataParserBitmap.getBasicChannelsCount());
+        Assertions.assertEquals(1, dataParserBitmap.getBasicChannelsCount());
     }
 
     @Test
@@ -26,7 +25,7 @@ public class DataParserBitmapTest {
 
         //Only make use of `data`!
         int result = dataParserBitmap.getRgb(data, x, y, psdImageContents);
-        assertEquals(0xFFFFFFFF, result);
+        Assertions.assertEquals(0xFFFFFFFF, result);
     }
 
     @Test
@@ -41,7 +40,7 @@ public class DataParserBitmapTest {
 
         //Only make use of `data`!
         int result = dataParserBitmap.getRgb(data, x, y, psdImageContents);
-        assertEquals(0xFF000000, result);
+        Assertions.assertEquals(0xFF000000, result);
     }
 
     private static PsdImageContents mockPsdContentImage() {
