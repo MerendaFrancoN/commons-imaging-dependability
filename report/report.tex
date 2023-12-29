@@ -259,18 +259,27 @@ CodeCov \cite{codecov} emerges as an instrumental tool, orchestrating a meticulo
 \begin{enumerate}
     \item \textbf{Overall Code Coverage:} Our CodeCov analysis reveals a comprehensive code coverage of 71.17\% across the entirety of the project. This quantitative metric serves as a substantive indicator of the extent to which our test suites engage with the codebase.
     
-    \item \textbf{Files with Lower Coverage Rates (Below 50\%):}
+    \item \textbf{Files with Lower Coverage Rates (In use with Below 0\%):}
     \begin{itemize}
-        \item \texttt{ColorTools.java}
-        \item \texttt{PixelDensity.java}
-        \item \texttt{AbstractImageParser.java}
-        \item \texttt{ImagingRuntimeException.java}
-        \item \texttt{ImagingFormatException.java}
-        \item \texttt{ImagingParameters.java}
+        \item \texttt ColorTools.java
+        \item \texttt PixelDensity.java
+        \item \texttt DataParserBitmap.java
+        \item \texttt TagInfoSLongs.java
+        \item \texttt ColorTools.java
+        \item \texttt PbmWriter.java
+        \item \texttt PgmWriter.java
+        \item \texttt UncompressedDataReader.java
+        \item \texttt ScanExpediterInterlaced.java
+        \item \texttt PhotometricInterpreterCieLab.java
+        \item \texttt PhotometricInterpreterYCbCr.java
+        \item \texttt FieldTypeFloat.java
     \end{itemize}
     
     \item \textbf{Line Coverage:} A granular examination exposes that among the 17,299 lines constituting the project, the project covers 12,311 lines.
 \end{enumerate}
+
+Following the addition of targeted tests aimed at addressing files with 0\% coverage, the overall code coverage has substantially increased to 71.82\%. Out of a total of 17,303 lines, 12,427 are now covered. Notably, certain sections of the code remain only partially covered, emphasizing the ongoing commitment to fortify the software's robustness and reliability.
+
 
 \subsection{Mutation Testing - PiTest}
 TODO
