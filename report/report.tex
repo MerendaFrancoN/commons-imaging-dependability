@@ -285,9 +285,10 @@ Following the addition of targeted tests aimed at addressing files with 0\% cove
 TODO
 
 \subsection{Java Microbenchmark Harness}
-JMH is a powerful tool specifically designed for benchmarking Java code, allowing us to meticulously analyze the performance of our compression algorithms.
+JMH\cite{jmh} is a powerful tool specifically designed for benchmarking Java code, allowing us to meticulously analyze the performance of our compression algorithms.
 
-In the context of our image management project, a critical analysis of CPU-intensive image formats led us to identify TIFF and WebP as the most resource-demanding formats. Subsequently, a closer examination of test durations brought to light a particularly time-consuming scenario: the compression of TIFF images using a variety of algorithms (\texttt{TIFF\_COMPRESSION\_LZW}, \texttt{TIFF\_COMPRESSION\_PACKBITS}, \texttt{TIFF\_COMPRESSION\_DEFLATE\_ADOBE}, and \texttt{Uncompressed}).
+In the context of our image management project, an in-depth analysis of CPU-intensive image formats has revealed TIFF and WebP as the most demanding formats in terms of system resources. Following this, a detailed examination of test durations highlighted a specific, time-consuming scenario (\texttt{org.apache.commons.\\imaging.formats.tiff.TiffRoundtripTest.test}): the compression of TIFF images utilizing various algorithms (\texttt{TIFF\_COMPRESSION\_\\LZW}, \texttt{TIFF\_COMPRESSION\_PACKBITS}, \texttt{TIFF\_COMPRESSION\_DEFLATE\_\\ADOBE}, and \texttt{Uncompressed}).
+
 
 To further explore the performance of each compression algorithm applied separately to the same set of images, we conducted a benchmark, yielding the following results: \vspace{12pt}
 
