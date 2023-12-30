@@ -285,7 +285,33 @@ Following the addition of targeted tests aimed at addressing files with 0\% cove
 TODO
 
 \subsection{Java Microbenchmark Harness}
-TODO
+JMH\cite{jmh} is a powerful tool specifically designed for benchmarking Java code, allowing us to meticulously analyze the performance of our compression algorithms.
+
+In the context of our image management project, an in-depth analysis of CPU-intensive image formats has revealed TIFF and WebP as the most demanding formats in terms of system resources. Following this, a detailed examination of test durations highlighted a specific, time-consuming scenario (\texttt{org.apache.commons.\\imaging.formats.tiff.TiffRoundtripTest.test}): the compression of TIFF images utilizing various algorithms (\texttt{TIFF\_COMPRESSION\_\\LZW}, \texttt{TIFF\_COMPRESSION\_PACKBITS}, \texttt{TIFF\_COMPRESSION\_DEFLATE\_\\ADOBE}, and \texttt{Uncompressed}).
+
+
+To further explore the performance of each compression algorithm applied separately to the same set of images, we conducted a benchmark, yielding the following results: \vspace{12pt}
+
+\textbf{Before Parallelization:}
+\begin{itemize}
+    \item \texttt{TIFF\_COMPRESSION\_DEFLATE\_ADOBE:} Throughput 0.465 $\pm$ 0.006 ops/s
+    \item \texttt{TIFF\_COMPRESSION\_LZW:} Throughput 0.216 $\pm$ 0.001 ops/s
+    \item \texttt{TIFF\_COMPRESSION\_PACKBITS:} Throughput 1.278 $\pm$ 0.053 ops/s
+    \item \texttt{Uncompressed:} Throughput 2.170 $\pm$ 0.019 ops/s
+\end{itemize}
+
+Upon thorough review, we identified an opportunity for performance enhancement by introducing parallelism into the compression process. The parallel application of compression algorithms resulted in significant throughput improvements:\vspace{12pt}
+
+\textbf{After Parallelization:}
+\begin{itemize}
+    \item \texttt{TIFF\_COMPRESSION\_DEFLATE\_ADOBE:} Throughput 1.375 $\pm$ 0.012 ops/s (Increase by 196.77\%)
+    \item \texttt{TIFF\_COMPRESSION\_LZW:} Throughput 0.774 $\pm$ 0.008 ops/s (Increase by 258.33\%)
+    \item \texttt{TIFF\_COMPRESSION\_PACKBITS:} Throughput 2.870 $\pm$ 0.164 ops/s (Increase by 124.61\%)
+    \item \texttt{Uncompressed:} Throughput 3.984 $\pm$ 0.066 ops/s (Increase by 83.12\%)
+\end{itemize}
+
+Beyond benchmark results, we observed a substantial reduction in the tiff test duration, decreasing from 8.4978 $\pm$ 0.0407 seconds ($\pm$0.48\%) to 3.7254 $\pm$ 0.128 seconds ($\pm$3.44\%) with the implemented parallelization. This notable improvement not only enhances the efficiency of our compression algorithms but also contributes to a more expedited execution of test scenarios.
+
 
 \section{Automated Generation of Test Cases}
 TODO
@@ -300,7 +326,71 @@ TODO
 TODO
 
 \subsection{OWASP Dependability Checker}
-TODO
+Upon conducting a comprehensive analysis using Owasp Dependency Checker\cite{owasp-dependency-check} version 9.0.4, the findings reveal crucial insights into the project's dependencies.
+
+\subsection{Dependency Overview}
+
+The following key dependencies have been identified:
+
+\begin{itemize}
+    \item \textbf{commons-io-2.15.0.jar}
+    \item \textbf{commons-math3-3.2.jar}
+    \item \textbf{jmh-core-1.36.jar}
+    \item \textbf{jmh-generator-annprocess-1.36.jar}
+    \item \textbf{jopt-simple-5.0.4.jar}
+\end{itemize}
+
+These dependencies are integral components influencing the project's structure and behavior.
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\linewidth,height=0.7\linewidth]{reportOwaspDC.png}
+    \caption{Owasp DC - HTML Generated Report}
+    \label{fig:enter-label}
+\end{figure}
+
+
+\subsection{Summary of Findings}
+
+\begin{itemize}
+    \item \textbf{Commons IO 2.15.0:}
+        \begin{itemize}
+            \item Description: The Apache Commons IO library contains utility classes, stream implementations, file filters, file comparators, endian transformation classes, and much more.
+            \item \textbf{Analysis}: The analysis indicates a high-confidence dependency.
+        \end{itemize}
+    
+    \item \textbf{Commons Math3 3.2:}
+        \begin{itemize}
+            \item Description: The Math project is a library of lightweight, self-contained mathematics and statistics components addressing the most common practical problems not immediately available in the Java programming language or commons-lang.
+            \item \textbf{Analysis}: The analysis indicates a high-confidence dependency.
+        \end{itemize}
+    
+    \item \textbf{JMH Core 1.36:}
+        \begin{itemize}
+            \item Description: This library constitutes the JMH Core for Java Microbenchmarking Harness. It is referenced in the project scope of Apache Commons Imaging, version 1.0-SNAPSHOT.
+            \item \textbf{Analysis}: The analysis indicates a high-confidence dependency.
+        \end{itemize}
+    
+    \item \textbf{JMH Generator Annprocess 1.36:}
+        \begin{itemize}
+            \item Description: This dependency represents the JMH Benchmark Generator based on Annotation Processors. Similar to the previous dependency, it is referenced in the project scope of Apache Commons Imaging, version 1.0-SNAPSHOT.
+            \item \textbf{Analysis}: The analysis indicates a high-confidence dependency.
+        \end{itemize}
+    
+    \item \textbf{Jopt Simple 5.0.4:}
+        \begin{itemize}
+            \item Description: Serving as a Java library for parsing command line options, this dependency is referenced in the project scope of Apache Commons Imaging, version 1.36.
+            \item \textbf{Analysis}: The analysis indicates a high-confidence dependency.
+        \end{itemize}
+\end{itemize}
+
+\subsection{Implications}
+
+Owasp Dependency Checker doesn't report any vulnerabilities associated to the dependencies of the project. In the case of presence of vulnerabilities in these dependencies would underscore the critical importance of addressing and mitigating potential security risks. A proactive approach to dependency management and continuous monitoring is recommended to uphold the project's overall integrity and security posture.
+
+These findings serve as a basis for further investigation and remediation efforts to enhance the robustness of the project's software supply chain.
+
 
 \subsection{FindSecBugs (SpotBug)}
 TODO
