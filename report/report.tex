@@ -326,7 +326,71 @@ TODO
 TODO
 
 \subsection{OWASP Dependability Checker}
-TODO
+Upon conducting a comprehensive analysis using Owasp Dependency Checker\cite{owasp-dependency-check} version 9.0.4, the findings reveal crucial insights into the project's dependencies.
+
+\subsection{Dependency Overview}
+
+The following key dependencies have been identified:
+
+\begin{itemize}
+    \item \textbf{commons-io-2.15.0.jar}
+    \item \textbf{commons-math3-3.2.jar}
+    \item \textbf{jmh-core-1.36.jar}
+    \item \textbf{jmh-generator-annprocess-1.36.jar}
+    \item \textbf{jopt-simple-5.0.4.jar}
+\end{itemize}
+
+These dependencies are integral components influencing the project's structure and behavior.
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\linewidth,height=0.7\linewidth]{reportOwaspDC.png}
+    \caption{Owasp DC - HTML Generated Report}
+    \label{fig:enter-label}
+\end{figure}
+
+
+\subsection{Summary of Findings}
+
+\begin{itemize}
+    \item \textbf{Commons IO 2.15.0:}
+        \begin{itemize}
+            \item Description: The Apache Commons IO library contains utility classes, stream implementations, file filters, file comparators, endian transformation classes, and much more.
+            \item \textbf{Analysis}: The analysis indicates a high-confidence dependency.
+        \end{itemize}
+    
+    \item \textbf{Commons Math3 3.2:}
+        \begin{itemize}
+            \item Description: The Math project is a library of lightweight, self-contained mathematics and statistics components addressing the most common practical problems not immediately available in the Java programming language or commons-lang.
+            \item \textbf{Analysis}: The analysis indicates a high-confidence dependency.
+        \end{itemize}
+    
+    \item \textbf{JMH Core 1.36:}
+        \begin{itemize}
+            \item Description: This library constitutes the JMH Core for Java Microbenchmarking Harness. It is referenced in the project scope of Apache Commons Imaging, version 1.0-SNAPSHOT.
+            \item \textbf{Analysis}: The analysis indicates a high-confidence dependency.
+        \end{itemize}
+    
+    \item \textbf{JMH Generator Annprocess 1.36:}
+        \begin{itemize}
+            \item Description: This dependency represents the JMH Benchmark Generator based on Annotation Processors. Similar to the previous dependency, it is referenced in the project scope of Apache Commons Imaging, version 1.0-SNAPSHOT.
+            \item \textbf{Analysis}: The analysis indicates a high-confidence dependency.
+        \end{itemize}
+    
+    \item \textbf{Jopt Simple 5.0.4:}
+        \begin{itemize}
+            \item Description: Serving as a Java library for parsing command line options, this dependency is referenced in the project scope of Apache Commons Imaging, version 1.36.
+            \item \textbf{Analysis}: The analysis indicates a high-confidence dependency.
+        \end{itemize}
+\end{itemize}
+
+\subsection{Implications}
+
+Owasp Dependency Checker doesn't report any vulnerabilities associated to the dependencies of the project. In the case of presence of vulnerabilities in these dependencies would underscore the critical importance of addressing and mitigating potential security risks. A proactive approach to dependency management and continuous monitoring is recommended to uphold the project's overall integrity and security posture.
+
+These findings serve as a basis for further investigation and remediation efforts to enhance the robustness of the project's software supply chain.
+
 
 \subsection{FindSecBugs (SpotBug)}
 TODO
