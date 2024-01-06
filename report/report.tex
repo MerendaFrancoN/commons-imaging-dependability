@@ -1,5 +1,4 @@
 \documentclass[sigconf]{acmart}
-
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
 \AtBeginDocument{%
@@ -289,10 +288,26 @@ JMH\cite{jmh} is a powerful tool specifically designed for benchmarking Java cod
 
 In the context of our image management project, an in-depth analysis of CPU-intensive image formats has revealed TIFF and WebP as the most demanding formats in terms of system resources. Following this, a detailed examination of test durations highlighted a specific, time-consuming scenario (\texttt{org.apache.commons.\\imaging.formats.tiff.TiffRoundtripTest.test}): the compression of TIFF images utilizing various algorithms (\texttt{TIFF\_COMPRESSION\_\\LZW}, \texttt{TIFF\_COMPRESSION\_PACKBITS}, \texttt{TIFF\_COMPRESSION\_DEFLATE\_\\ADOBE}, and \texttt{Uncompressed}).
 
+\subsubsection{Environment and Program Execution Specifications}
 
-To further explore the performance of each compression algorithm applied separately to the same set of images, we conducted a benchmark, yielding the following results: \vspace{12pt}
+\textbf{Hardware Specifications:}
+\begin{itemize}
+  \item CPU: Apple M1 Pro (2021)
+  \item OS: MacOS Sonoma 14.2.1
+  \item RAM: 16GB unified memory
+\end{itemize}
 
-\textbf{Before Parallelization:}
+\textbf{Program Execution Specifications (for report):}
+\begin{itemize}
+  \item \texttt{OpenJDK version "1.8.0\_392"}
+  \item \texttt{OpenJDK Runtime Environment Corretto-8.392.08.1 (build 1.8.0\_392-b08)}
+  \item \texttt{OpenJDK 64-Bit Server VM Corretto-8.392.08.1 (build 25.392-b08, mixed mode)}
+\end{itemize}
+
+\subsubsection{Results}
+To further explore the performance of each compression algorithm, each algorithm was applied separately to the same set of images, conducting a benchmark, that yielded the following results: \vspace{12pt}
+
+\textbf{Before Using Concurrency:}
 \begin{itemize}
     \item \texttt{TIFF\_COMPRESSION\_DEFLATE\_ADOBE:} Throughput 0.465 $\pm$ 0.006 ops/s
     \item \texttt{TIFF\_COMPRESSION\_LZW:} Throughput 0.216 $\pm$ 0.001 ops/s
@@ -302,7 +317,7 @@ To further explore the performance of each compression algorithm applied separat
 
 Upon thorough review, we identified an opportunity for performance enhancement by introducing parallelism into the compression process. The parallel application of compression algorithms resulted in significant throughput improvements:\vspace{12pt}
 
-\textbf{After Parallelization:}
+\textbf{After Using Concurrency:}
 \begin{itemize}
     \item \texttt{TIFF\_COMPRESSION\_DEFLATE\_ADOBE:} Throughput 1.375 $\pm$ 0.012 ops/s (Increase by 196.77\%)
     \item \texttt{TIFF\_COMPRESSION\_LZW:} Throughput 0.774 $\pm$ 0.008 ops/s (Increase by 258.33\%)
@@ -310,7 +325,40 @@ Upon thorough review, we identified an opportunity for performance enhancement b
     \item \texttt{Uncompressed:} Throughput 3.984 $\pm$ 0.066 ops/s (Increase by 83.12\%)
 \end{itemize}
 
-Beyond benchmark results, we observed a substantial reduction in the tiff test duration, decreasing from 8.4978 $\pm$ 0.0407 seconds ($\pm$0.48\%) to 3.7254 $\pm$ 0.128 seconds ($\pm$3.44\%) with the implemented parallelization. This notable improvement not only enhances the efficiency of our compression algorithms but also contributes to a more expedited execution of test scenarios.
+Beyond benchmark results, we observed a substantial reduction in the tiff test duration, decreasing from 8.4978 $\pm$ 0.0407 seconds ($\pm$0.48\%) to 3.7254 $\pm$ 0.128 seconds ($\pm$3.44\%) by applying compression algorithms to multiple image files in a concurrent way. This notable improvement not only enhances the efficiency of our compression algorithms but also contributes to a more expedited execution of test scenarios.
+
+\subsubsection{Wilcoxon-Mann-Whitney Test and Cliff's Delta}
+
+The Wilcoxon-Mann-Whitney test was performed to compare the two groups: "Not using concurrency" and "Using concurrency."
+
+\begin{itemize}
+    \item Test Statistic ($W$): 3
+    \item P-value: 0.2
+\end{itemize}
+
+\textbf{Decision Rule:} If the p-value is less than or equal to the significance level (\(\alpha\)), typically 0.05, we reject the null hypothesis.
+
+\textbf{Interpretation:} Since the p-value (0.2) is greater than 0.05, there is not enough evidence to reject the null hypothesis. We do not conclude a significant difference between the two groups.
+
+
+% Cliff's Delta Effect Size
+\subsubsection{Cliff's Delta Effect Size}
+
+Cliff's Delta was calculated to assess the effect size between the two groups: "Not using concurrency" and "Using concurrency."
+
+\begin{itemize}
+    \item Cliff's Delta: -0.625
+\end{itemize}
+
+\textbf{Interpretation:}
+\begin{itemize}
+    \item A negative value indicates a tendency for lower values in the "Not using concurrency" group compared to the "Using concurrency" group.
+    \item The magnitude of -0.625 suggests a moderate-sized effect.
+\end{itemize}
+
+\textbf{Conclusion:}
+The negative value of Cliff's Delta, with a moderate magnitude, suggests a moderate tendency for lower values in the "Not using concurrency" group compared to the "Using concurrency" group.
+
 
 
 \section{Automated Generation of Test Cases}
