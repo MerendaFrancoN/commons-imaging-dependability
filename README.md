@@ -149,15 +149,15 @@ Additional Resources
 ### 1. [EvoSuite](https://www.evosuite.org/) - Use Java 8
 - EvoSuite Tests Generation for all classes - Only Runs with **`Java 8`** !
 - Syntax:
-  - `mvn -DmemoryInMB=<amount_mb> -Dcores=<number_of_cores> evosuite:generate evosuite:export test`
+  - `mvn -DmemoryInMB=<amount_mb> -Dcores=<number_of_cores> evosuite:generate evosuite:export test -DrunEvosuite=true`
 - Example: 
-  - `mvn -DmemoryInMB=8000 -Dcores=6 evosuite:generate evosuite:export test`
+  - `mvn -DmemoryInMB=8000 -Dcores=6 evosuite:generate evosuite:export test -DrunEvosuite=true`
 
 
 - EvoSuite Tests Generation for specific classes - Only Runs with **`Java 8`** !
   - Syntax: `mvn -DmemoryInMB=<amount_mb> -Dcores=<number_of_cores> evosuite:generate evosuite:export test -DcutsFile=<path_to_file_where_specific_classes_are_defined.txt>`
 - Example:
-  - `mvn -DmemoryInMB=2000 -Dcores=2 evosuite:generate evosuite:export test -DcutsFile=.evosuite/cutsFile.txt`
+  - `mvn -DmemoryInMB=2000 -Dcores=2 evosuite:generate evosuite:export test -DcutsFile=.evosuite/cutsFile.txt -DrunEvosuite=true`
 
 Example of `cutsFile.txt`:
 
