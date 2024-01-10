@@ -148,6 +148,7 @@ Additional Resources
 ## 5. Automated Testing Generation Tools
 ### 1. [EvoSuite](https://www.evosuite.org/) - Use Java 8
 - EvoSuite Tests Generation for all classes - Only Runs with **`Java 8`** !
+- Use the following flag: -DrunEvosuite=true -- `false` for disable it and `true` for enable it. 
 - Syntax:
   - `mvn -DmemoryInMB=<amount_mb> -Dcores=<number_of_cores> evosuite:generate evosuite:export test -DrunEvosuite=true`
 - Example: 
