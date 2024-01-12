@@ -200,11 +200,14 @@
                     </dependency>
                 </dependencies>
                 <configuration>
+                    <mutators>
+                        <mutator>STRONGER</mutator>
+                    </mutators>
                     <targetClasses>
                         <param>org.apache.commons.imaging.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>org.apache.commons.imaging.test.*</param>
+                        <param>org.apache.commons.imaging.*</param>
                     </targetTests>
                 </configuration>
             </plugin>
