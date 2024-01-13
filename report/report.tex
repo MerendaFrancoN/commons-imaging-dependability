@@ -2,8 +2,23 @@
 
 \usepackage{pgfplots}
 \usepackage{placeins}  % Required for \FloatBarrier
-\pgfplotsset{compat=1.17}
+\usepackage{pgfplots}
 
+% Nice color sets, see see http://colorbrewer2.org/	
+\usepgfplotslibrary{colorbrewer}
+% initialize Set1-4 from colorbrewer (we're comparing 4 classes),
+\pgfplotsset{compat = newest, cycle list/Set1-8} 
+% Tikz is loaded automatically by pgfplots
+\usetikzlibrary{pgfplots.statistics, pgfplots.colorbrewer} 
+% provides \pgfplotstabletranspose
+\usepackage{pgfplotstable}
+\usepackage{filecontents}
+
+\begin{filecontents*}{pitest_data.csv}
+76, 75, 85, 77, 76, 82, 83, 71, 79, 64, 96, 83, 83, 77, 74, 72, 78, 85, 100, 100, 82, 59, 61, 57, 94, 63, 91, 91, 74, 86, 77, 93, 76, 74, 84, 93, 93, 80, 74, 79, 38, 93, 75, 0
+69, 54, 69, 81, 56, 75, 73, 57, 77, 46, 86, 63, 52, 54, 52, 53, 60, 55, 35, 22, 61, 51, 26, 52, 65, 62, 55, 92, 66, 88, 68, 70, 55, 74, 85, 81, 26, 68, 65, 9, 37, 90, 43, 0
+91, 69, 80, 94, 79, 100, 83, 80, 93, 74, 87, 71, 60, 80, 75, 76, 74, 64, 35, 22, 73, 91, 40, 92, 68, 95, 100, 100, 99, 99, 94, 72, 78, 95, 99, 81, 26, 81, 83, 14, 95, 97, 60, 0
+\end{filecontents*}
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
 \AtBeginDocument{%
@@ -288,11 +303,33 @@ Following the addition of targeted tests aimed at addressing files with 0\% cove
 \subsection{Mutation Testing - PiTest}
 Pitest \cite{pitest} is an open-source mutation testing tool designed for Java projects. Its primary purpose is to evaluate the efficacy of a software test suite by introducing controlled and artificial changes (mutations) into the source code. The tool then analyzes how well the existing test suite detects and responds to these mutations. Pitest helps identify areas of weakness in test coverage, guiding developers in enhancing the robustness of their test suites and, consequently, improving overall code quality and reliability. 
 The mutant coverage is decent, out of 15393 mutants introduced, 10217 were killed, The overall mutation coverage for the entire project is 66\%, indicating that approximately 66\% of introduced mutations are successfully detected by the test suite. Most packages scored a mutant coverage of around 52-73\% for the interquartile range and a median of 0.61.
-
 The overall line coverage for the project is relatively good, with most packages achieving a line coverage of around 74-86\% for the interquartile range and a median of 0.79. The line coverage is at 77\%, suggesting that tests cover a substantial portion of the codebase. Ranging from 38\% (for just one datapoint) to 100 line coverage rate across all different packages indicates that a substantial portion of the code is covered by tests.
 The test strength metric is at 83\%, which is a custom metric that seems to indicate a strong test suite.
+\begin{tikzpicture}
+	\pgfplotstableread[col sep=comma]{pitest_data.csv}\csvdata
+	% Boxplot groups columns, but we want rows
+	\pgfplotstabletranspose\datatransposed{\csvdata} 
+	\begin{axis}[
+		boxplot/draw direction = y,
+		x axis line style = {opacity=0},
+		axis x line* = bottom,
+		axis y line = left,
+		enlarge y limits,
+		ymajorgrids,
+		xtick = {1, 2, 3},
+		xticklabel style = {align=center, font=\small, rotate=60},
+		xticklabels = {Line Coverage, Mutation Coverage, Test Strength},
+		xtick style = {draw=none}, % Hide tick line
+		ylabel = {Percentage \%},
+        ytick = {10,20,30,40,50,60,70,80,90,100}    
+	]
+		\foreach \n in {1,...,3} {
+			\addplot+[boxplot, fill, draw=black] table[y index=\n] {\datatransposed};
+		}
+	\end{axis}
+\end{tikzpicture}
 
-For some packages, such as                                    \textbf{.formats.jpeg.decoder}, \textbf{.formats.
+For some packages, such as \textbf{.formats.jpeg.decoder}, \textbf{.formats.
 tiff.datareaders} and \textbf{.mylzw} the mutation coverage is notably high, suggesting a strong ability to detect mutations.
 Some packages, like 
 \textbf{.png.transparencyfilters} and \textbf{.icc} have lower mutation coverage. It might be worth investigating whether there are opportunities to improve test coverage in these areas.
