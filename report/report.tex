@@ -221,7 +221,7 @@ In conclusion, Apache Commons Imaging stands out as an essential tool for Java d
 
 After analyzing the commons-imaging-dependability project on SonarCloud, we found the following issues in the code:
 
-\textbf{High → 109}
+\textbf{High → 54}
 
 In the high category, several errors are related to divisions where the divisor is not checked for the possibility of being 0. Therefore, if the divisor is 0, the code would throw an exception. There are also errors of the type where referencing a static member of a subclass from its parent during class initialization makes the code more fragile and prone to future errors. The program's execution will largely depend on the order of class and static member initialization.
 
@@ -404,7 +404,22 @@ TODO
 TODO
 
 \section{Software Vulnerabilities}
-TODO
+Software vulnerabilities are weaknesses or flaws in a program that could be exploited by an attacker to compromise the integrity, confidentiality, or availability of the system. These vulnerabilities can exist at various layers of the software, from design errors to implementation flaws. It is crucial to address and fix these vulnerabilities to ensure the security of the software.
+
+
+Common Types of Vulnerabilities in Apache Commons Imaging:
+
+\begin{itemize}
+    \item \textbf{\textit{Data Injection:}} This can occur when external input is not properly filtered or validated, allowing an attacker to inject malicious code.
+    
+    \item \textbf{\textit{Buffer Overflow:}} This type of vulnerability occurs when the allotted storage capacity for a buffer is exceeded, enabling an attacker to overwrite surrounding memory.
+    
+    \item \textbf{\textit{Inadequate Validation:}} Lack of input validation can lead to security issues. For example, if a user's authenticity is not verified before executing a critical operation.
+    
+    \item \textbf{\textit{Authentication and Authorization Issues:}} Failures in authentication or authorization mechanisms may allow unauthorized users to access sensitive resources or functions.
+    
+    \item \textbf{\textit{Incorrect Error Handling:}} Improper error handling can expose sensitive information or allow an attacker to discover weaknesses in the system.
+\end{itemize}
 
 \subsection{OWASP Dependability Checker}
 Upon conducting a comprehensive analysis using Owasp Dependency Checker\cite{owasp-dependency-check} version 9.0.4, the findings reveal crucial insights into the project's dependencies.
@@ -474,7 +489,17 @@ These findings serve as a basis for further investigation and remediation effort
 
 
 \subsection{FindSecBugs (SpotBug)}
-TODO
+
+We conducted the analysis with FindSecBugs and identified two security bugs related to hard-coded keys. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\linewidth]{reportFindSecBugs.png}
+    \caption{Report before fix}
+    \label{fig:enter-label}
+\end{figure}
+
+FindSecBugs references these types of vulnerabilities as the inappropriate storage of cryptographic keys in the source code. Given that source code can be widely distributed, especially in enterprise or open-source environments, it is not secure to include passwords and secret keys directly in the code. For secure management, passwords and secret keys should be stored in separate configuration files or keystores. (Note: Hard-coded passwords are addressed separately through the Hard-coded password pattern)
 
 \section{Discussion}
 TODO
