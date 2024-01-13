@@ -286,7 +286,20 @@ Following the addition of targeted tests aimed at addressing files with 0\% cove
 
 
 \subsection{Mutation Testing - PiTest}
-TODO
+The mutant coverage is decent, out of 15393 mutants introduced, 10217 were killed, The overall mutation coverage for the entire project is 66\%, indicating that approximately 66\% of introduced mutations are successfully detected by the test suite. Most packages scored a mutant coverage of around 52-73\% for the interquartile range and a median of 0.61.
+
+The overall line coverage for the project is relatively good, with most packages achieving a line coverage of around 74-86\% for the interquartile range and a median of 0.79. The line coverage is at 77\%, suggesting that tests cover a substantial portion of the codebase. Ranging from 38\% (for just one datapoint) to 100 line coverage rate across all different packages indicates that a substantial portion of the code is covered by tests.
+The test strength metric is at 83\%, which is a custom metric that seems to indicate a strong test suite.
+
+For some packages, such as                                    \textbf{.formats.jpeg.decoder}, \textbf{.formats.
+tiff.datareaders} and \textbf{.mylzw} the mutation coverage is notably high, suggesting a strong ability to detect mutations.
+Some packages, like 
+\textbf{.png.transparencyfilters} and \textbf{.icc} have lower mutation coverage. It might be worth investigating whether there are opportunities to improve test coverage in these areas.
+The \textbf{.internal} package has relatively low line coverage, and it could benefit from additional tests.
+
+In the future it should be considered focusing on packages with lower mutation coverage and line coverage to improve the overall robustness of the test suite and explore specific mutations that were not covered to understand if they represent edge cases that should be addressed in the tests.
+
+
 
 \subsection{Java Microbenchmark Harness}
 JMH\cite{jmh} is a powerful tool specifically designed for benchmarking Java code, allowing us to meticulously analyze the performance of our compression algorithms.
