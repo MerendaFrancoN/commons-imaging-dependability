@@ -286,6 +286,7 @@ Following the addition of targeted tests aimed at addressing files with 0\% cove
 
 
 \subsection{Mutation Testing - PiTest}
+Pitest \cite{pitest} is an open-source mutation testing tool designed for Java projects. Its primary purpose is to evaluate the efficacy of a software test suite by introducing controlled and artificial changes (mutations) into the source code. The tool then analyzes how well the existing test suite detects and responds to these mutations. Pitest helps identify areas of weakness in test coverage, guiding developers in enhancing the robustness of their test suites and, consequently, improving overall code quality and reliability. 
 The mutant coverage is decent, out of 15393 mutants introduced, 10217 were killed, The overall mutation coverage for the entire project is 66\%, indicating that approximately 66\% of introduced mutations are successfully detected by the test suite. Most packages scored a mutant coverage of around 52-73\% for the interquartile range and a median of 0.61.
 
 The overall line coverage for the project is relatively good, with most packages achieving a line coverage of around 74-86\% for the interquartile range and a median of 0.79. The line coverage is at 77\%, suggesting that tests cover a substantial portion of the codebase. Ranging from 38\% (for just one datapoint) to 100 line coverage rate across all different packages indicates that a substantial portion of the code is covered by tests.
@@ -411,7 +412,14 @@ The negative value of Cliff's Delta, with a moderate magnitude, suggests a moder
 TODO
 
 \subsection{EvoSuite}
-TODO
+Evosuite\cite{evosuite}is a Java automated test generation tool utilizing genetic algorithms to maximize code coverage. Seamlessly integrating with JUnit, it supports parameterized testing, state-based testing, and automatic mock object generation. Evosuite's versatility extends to command line usage and IDE integration, offering an efficient solution for automating high-quality unit tests in Java applications.
+
+Through the utilization of Evosuite, we successfully generated automated tests for the classes within the Apache Commons Imaging project. As assessed by OpenClover, a tool offering both line and branch coverage metrics, the outcomes revealed:
+\begin{itemize}
+    \item \textbf{Code Coverage Boost:} Increased from 73.9\% to 76.3\% with automated tests.
+    \item  \textbf{Tests Generated:} A total of 584 tests were automatically generated.
+\end{itemize}
+
 
 \subsection{Randoop}
 TODO
