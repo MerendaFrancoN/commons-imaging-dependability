@@ -1,8 +1,39 @@
 \documentclass[sigconf]{acmart}
+% Removed Fake Conference information
+\settopmatter{printacmref=false} % Removes citation information below abstract
+\pagestyle{plain} % removes running headers
 
 \usepackage{pgfplots}
 \usepackage{placeins}  % Required for \FloatBarrier
-\pgfplotsset{compat=1.17}
+\usepackage{pgfplots}
+
+% Nice color sets, see see http://colorbrewer2.org/	
+\usepgfplotslibrary{colorbrewer}
+% initialize Set1-4 from colorbrewer (we're comparing 4 classes),
+\pgfplotsset{compat = newest, cycle list/Set1-8} 
+% Tikz is loaded automatically by pgfplots
+\usetikzlibrary{pgfplots.statistics, pgfplots.colorbrewer} 
+% provides \pgfplotstabletranspose
+\usepackage{pgfplotstable}
+\usepackage{filecontents}
+
+\begin{filecontents*}{pitest_data.csv}
+76, 75, 85, 77, 76, 82, 83, 71, 79, 64, 96, 83, 83, 77, 74, 72, 78, 85, 100, 100, 82, 59, 61, 57, 94, 63, 91, 91, 74, 86, 77, 93, 76, 74, 84, 93, 93, 80, 74, 79, 38, 93, 75, 0
+69, 54, 69, 81, 56, 75, 73, 57, 77, 46, 86, 63, 52, 54, 52, 53, 60, 55, 35, 22, 61, 51, 26, 52, 65, 62, 55, 92, 66, 88, 68, 70, 55, 74, 85, 81, 26, 68, 65, 9, 37, 90, 43, 0
+91, 69, 80, 94, 79, 100, 83, 80, 93, 74, 87, 71, 60, 80, 75, 76, 74, 64, 35, 22, 73, 91, 40, 92, 68, 95, 100, 100, 99, 99, 94, 72, 78, 95, 99, 81, 26, 81, 83, 14, 95, 97, 60, 0
+\end{filecontents*}
+
+\begin{filecontents*}{evosuite_data_default.csv}
+    3, 1, 5, 7, 6, 0, 10, 10, 10, 2, 11, 10, 12, 4, 13, 15, 3, 6, 5, 4, 3, 3, 5, 1, 2, 2, 0, 1, 0, 5, 1, 3, 0, 0, 3, 3, 0, 3, 0, 0, 4, 5, 1, 0, 6, 2, 0, 0, 0, 4, 2, 9, 0, 0, 0, 0, 1, 2, 4, 0, 0, 0, 0, 1, 0, 5, 3, 1, 1, 1, 4, 1, 4, 5, 3, 1, 1, 1, 6, 0, 0, 1, 0, 0, 3, 5, 1, 4, 5, 0, 0, 3, 4, 3, 5, 2, 1, 4, 2, 4, 0, 1, 9, 4, 1, 7, 1, 7, 3, 1, 19, 4, 4, 4, 0, 0, 0, 0, 3, 5, 1, 0, 0, 3, 1, 2, 2, 0, 2, 2, 1, 0, 5, 1, 2, 2, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 4, 3, 0, 5, 0, 0, 4, 6, 5, 4, 6, 9, 6, 7, 2, 4, 0, 2, 1, 3, 2, 1, 2, 3, 1, 2, 1, 1, 3, 0, 1, 1, 2, 2, 3, 1, 1, 2, 4, 1, 1, 2, 1, 1, 5, 8, 0, 1, 5, 1, 6, 0, 2, 3, 7, 6, 1, 1, 2, 0, 1, 6, 4, 1, 4, 2, 0, 0, 3, 1, 15, 5, 7, 3, 5, 0, 3, 0, 0, 5, 6
+    6, 1, 21, 34, 29, 0, 26, 27, 26, 5, 28, 23, 30, 9, 31, 37, 18, 35, 27, 28, 17, 18, 8, 1, 7, 10, 0, 1, 0, 27, 1, 3, 0, 0, 7, 12, 0, 9, 0, 0, 10, 16, 1, 0, 28, 2, 0, 0, 0, 7, 6, 27, 0, 0, 0, 0, 4, 7, 4, 0, 0, 0, 0, 1, 0, 15, 5, 4, 4, 1, 4, 1, 22, 15, 3, 1, 1, 1, 16, 0, 0, 3, 0, 0, 13, 18, 1, 8, 11, 0, 0, 10, 14, 11, 23, 7, 8, 4, 4, 13, 0, 3, 27, 13, 2, 25, 2, 22, 10, 4, 55, 13, 14, 12, 0, 0, 0, 0, 15, 36, 1, 0, 0, 5, 3, 4, 4, 0, 4, 6, 2, 0, 20, 6, 10, 11, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 9, 5, 0, 14, 0, 0, 15, 21, 15, 15, 14, 27, 24, 15, 7, 9, 0, 8, 6, 15, 14, 6, 9, 16, 4, 10, 2, 2, 14, 0, 5, 2, 7, 10, 15, 2, 2, 7, 19, 6, 2, 10, 2, 2, 20, 43, 0, 1, 7, 1, 47, 0, 3, 12, 33, 14, 2, 1, 3, 0, 2, 22, 14, 2, 12, 5, 0, 0, 7, 1, 22, 13, 23, 12, 11, 0, 17, 0, 0, 11, 39
+    1.0, 0.0468085106382978, 0.0704225352112676, 0.3535353535353535, 0.4008097165991903, 0.0, 0.425531914893617, 0.3974358974358974, 0.3782051282051282, 0.1987179487179487, 0.3461538461538461, 0.3076923076923077, 0.3140495867768595, 0.2692307692307692, 0.2884615384615384, 0.4242424242424242, 0.6456692913385826, 0.2138728323699422, 0.4196428571428571, 0.0, 0.0, 0.0551724137931034, 0.0, 1.0, 0.0, 0.8095238095238095, 0.0, 1.0, 0.0, 0.2222222222222222, 1.0, 0.0314960629921259, 0.0, 0.0, 0.0, 0.1684782608695652, 0.0, 1.0, 0.0, 0.0, 0.0242424242424242, 0.0601851851851851, 0.2142857142857142, 0.0, 0.453125, 0.4263565891472868, 0.0, 0.0, 1.0, 0.32, 0.875, 0.76, 0.0, 0.0, 1.0, 0.0, 0.2916666666666667, 0.2727272727272727, 0.3829787234042553, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.8414634146341463, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.72, 0.8461538461538461, 0.0, 1.0, 1.0, 1.0, 0.6, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.2779552715654952, 1.0, 0.4329004329004329, 0.2916666666666667, 0.0, 1.0, 0.64, 0.5748031496062992, 0.6944444444444444, 0.074074074074074, 0.375, 0.0, 0.0, 0.4186046511627907, 0.1850746268656716, 0.0, 0.0, 0.415, 0.813953488372093, 1.0, 0.6, 0.0, 0.2253521126760563, 0.0, 1.0, 0.8320610687022901, 0.6263736263736264, 0.4117647058823529, 0.3333333333333333, 1.0, 1.0, 0.0, 1.0, 0.532258064516129, 0.4594594594594595, 1.0, 1.0, 0.0, 1.0, 0.1055555555555555, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.2857142857142857, 0.0, 0.9, 0.1428571428571428, 0.0, 0.2516556291390728, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.3333333333333333, 1.0, 1.0, 1.0, 0.0, 0.4122137404580153, 0.375, 0.0, 0.0017113519680547, 1.0, 0.0, 0.0933333333333333, 0.0, 0.1666666666666666, 0.0789473684210526, 0.1737588652482269, 0.5681818181818182, 0.1020408163265306, 0.1243781094527363, 0.0, 0.8636363636363636, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.6538461538461539, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.6170212765957447, 0.6875, 0.0, 0.0, 0.0803782505910165, 1.0, 0.0379310344827586, 1.0, 0.2307692307692307, 0.8333333333333334, 0.6021978021978022, 0.1682242990654205, 1.0, 1.0, 1.0, 1.0, 0.0, 0.4, 0.0, 0.0, 0.2878787878787879, 0.0714285714285714, 0.0, 0.0, 0.7058823529411765, 0.0, 0.4900990099009901, 0.0475698035160289, 0.9032258064516128, 0.42, 0.1937984496124031, 0.0, 0.5769230769230769, 0.0, 0.0, 0.5, 0.6532258064516129
+\end{filecontents*}
+
+\begin{filecontents*}{evosuite_data_branch.csv}
+    3, 2, 5, 1, 3, 6, 2, 14, 9, 9, 9, 9, 9, 9, 10, 9, 9, 9, 1, 3, 4, 5, 0, 2, 7, 2, 1, 1, 2, 0, 1, 0, 0, 1, 0, 1, 0, 4, 0, 3, 0, 3, 2, 0, 2, 0, 2, 2, 1, 0, 6, 0, 2, 6, 0, 11, 0, 0, 4, 2, 5, 2, 0, 3, 1, 1, 4, 2, 2, 2, 1, 1, 0, 5, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 0, 1, 1, 4, 6, 5, 0, 6, 0, 0, 1, 0, 1, 10, 1, 0, 2, 2, 3, 2, 1, 4, 2, 3, 6, 3, 6, 0, 6, 1, 3, 0, 2, 4, 0, 1, 10, 1, 2, 2, 2, 0, 0, 6, 0, 2, 1, 0, 1, 0, 3, 0, 1, 2, 1, 1, 1, 1, 0, 1, 1, 2, 7, 1, 4, 0, 0, 0, 6, 3, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 5, 2, 6, 0, 1, 4, 1, 1, 6, 1, 13, 1, 2, 3, 2, 6, 0, 2, 9, 1, 1, 2, 2, 2, 3, 2, 2, 2, 2, 3, 2, 1, 1, 1, 2, 1, 2, 1, 3, 6, 2, 2, 3, 1, 3, 1, 2, 4, 2, 2, 1, 2, 1, 1, 4, 1, 7, 5, 3, 2, 0, 6, 1, 3, 0, 0, 3, 4, 2, 2, 1, 1, 1, 0, 4, 3, 3, 2, 3, 7, 7, 5, 10, 3, 0, 0, 10, 14, 4, 0, 2, 4, 2, 0, 0, 5, 2, 1, 0, 3, 0, 4
+    6, 9, 26, 7, 18, 32, 6, 27, 23, 23, 23, 23, 22, 23, 26, 22, 22, 23, 5, 14, 12, 26, 0, 10, 34, 3, 1, 3, 9, 0, 1, 0, 0, 1, 0, 1, 0, 12, 0, 9, 0, 7, 6, 0, 6, 0, 5, 4, 1, 0, 26, 0, 4, 10, 0, 47, 0, 0, 15, 6, 15, 2, 0, 18, 8, 3, 4, 8, 8, 7, 2, 1, 0, 15, 2, 3, 2, 1, 1, 1, 11, 6, 1, 1, 0, 1, 1, 9, 11, 13, 0, 30, 0, 0, 1, 0, 2, 21, 2, 0, 6, 6, 9, 11, 3, 12, 12, 3, 12, 9, 10, 0, 18, 2, 9, 0, 6, 12, 0, 2, 30, 3, 6, 6, 6, 0, 0, 12, 0, 11, 1, 0, 1, 0, 12, 0, 1, 5, 2, 1, 2, 3, 0, 2, 3, 8, 36, 3, 28, 0, 0, 0, 13, 3, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 17, 4, 28, 0, 4, 14, 2, 4, 14, 3, 37, 3, 5, 9, 8, 12, 0, 3, 31, 2, 6, 8, 10, 9, 12, 11, 8, 10, 10, 10, 9, 6, 2, 2, 9, 4, 7, 2, 8, 41, 9, 9, 18, 2, 12, 2, 9, 13, 9, 8, 2, 8, 2, 2, 13, 4, 32, 27, 14, 5, 0, 10, 1, 7, 0, 0, 6, 16, 8, 5, 2, 1, 3, 0, 8, 10, 10, 4, 13, 16, 14, 5, 29, 6, 0, 0, 20, 30, 13, 0, 8, 10, 14, 0, 0, 22, 17, 2, 0, 5, 0, 25
+    1.0, 0.151063829787234, 0.4084507042253521, 0.0, 0.3636363636363636, 0.4048582995951417, 0.0240963855421686, 0.1149083704804358, 0.3617021276595745, 0.4423076923076923, 0.3974358974358974, 0.3846153846153846, 0.5192307692307693, 0.3717948717948718, 0.4256198347107438, 0.3653846153846153, 0.4102564102564102, 0.3878787878787879, 0.0, 0.2052023121387283, 0.2558139534883721, 0.1116071428571428, 0.0, 0.0975609756097561, 0.2620689655172414, 0.0, 1.0, 0.0, 0.8095238095238095, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.2073170731707317, 0.0, 0.3636363636363636, 0.0, 1.0, 1.0, 0.0, 0.0272727272727272, 0.0, 0.0242424242424242, 0.0925925925925925, 0.1785714285714285, 0.0, 0.40625, 0.0, 0.4666666666666667, 0.0504475183075671, 0.0, 0.3469387755102041, 1.0, 0.0, 1.0, 1.0, 0.72, 0.4285714285714285, 1.0, 0.25, 0.0127388535031847, 0.1818181818181818, 0.3829787234042553, 0.0549450549450549, 0.026595744680851, 1.0, 0.0, 1.0, 1.0, 0.9146341463414634, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.72, 0.8846153846153846, 0.0, 1.0, 0.0, 1.0, 1.0, 0.6, 0.0766129032258064, 0.0636363636363636, 0.0, 0.5647058823529412, 0.0, 1.0, 1.0, 0.0, 0.238095238095238, 0.6666666666666666, 0.0, 1.0, 0.24, 0.4015748031496063, 0.0277777777777777, 0.2839506172839506, 0.25, 0.8692307692307693, 1.0, 0.0, 0.9534883720930232, 0.1343283582089552, 0.475, 0.0, 0.395, 1.0, 0.4, 0.0, 0.2676056338028169, 0.5487804878048781, 0.0, 1.0, 0.6946564885496184, 0.5714285714285714, 0.1294117647058823, 0.5882352941176471, 0.0, 1.0, 1.0, 0.96, 1.0, 0.3709677419354839, 1.0, 1.0, 0.0106382978723404, 0.0, 1.0, 0.0, 1.0, 0.3055555555555556, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.7857142857142857, 0.3, 0.0471821756225425, 0.0, 0.5148514851485149, 0.0, 0.0, 0.0, 0.031578947368421, 0.6, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.3194444444444444, 1.0, 1.0, 1.0, 0.0, 0.4961832061068702, 0.3333333333333333, 0.0958904109589041, 1.0, 0.0, 0.0, 0.1111111111111111, 0.0, 0.1950354609929078, 0.0909090909090909, 0.2947761194029851, 0.0, 0.0381426202321724, 0.0754098360655737, 0.0178571428571428, 0.002840909090909, 0.0, 0.0, 0.125, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.6666666666666666, 1.0, 0.6666666666666666, 1.0, 0.0, 0.7115384615384616, 1.0, 1.0, 0.5562130177514792, 1.0, 1.0, 1.0, 1.0, 0.8333333333333334, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.7872340425531915, 1.0, 0.0273775216138328, 0.68125, 0.5, 0.7058823529411765, 0.0, 0.1926713947990543, 1.0, 0.1, 1.0, 0.0, 0.3846153846153846, 0.8333333333333334, 0.1132075471698113, 0.0654205607476635, 1.0, 1.0, 1.0, 1.0, 0.22, 0.2, 0.0, 0.4705882352941176, 0.0, 0.75, 0.1188251001335113, 0.0958083832335329, 0.101213171577123, 0.4117647058823529, 0.0, 0.0, 0.6287128712871287, 0.1416752843846949, 0.7419354838709677, 0.0, 0.3, 0.2093023255813953, 0.1538461538461538, 0.0, 0.0, 0.0762527233115468, 0.5714285714285714, 0.6666666666666666, 0.0, 0.3, 0.0, 0.6290322580645161
+\end{filecontents*}
 
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
@@ -277,7 +308,52 @@ Following the addition of targeted tests aimed at addressing files with 0\% cove
 
 
 \subsection{Mutation Testing - PiTest}
-TODO
+Pitest \cite{pitest} is an open-source mutation testing tool designed for Java projects. Its primary purpose is to evaluate the efficacy of a software test suite by introducing controlled and artificial changes (mutations) into the source code. The tool then analyzes how well the existing test suite detects and responds to these mutations. Pitest helps identify areas of weakness in test coverage, guiding developers in enhancing the robustness of their test suites and, consequently, improving overall code quality and reliability. 
+After performing this testing tool these were the results:
+\subsubsection{\textit{\textbf{Mutant Coverage:}}}
+The mutant coverage is decent, out of 15393 mutants introduced, 10217 were killed, The overall mutation coverage for the entire project is 66\%, indicating that approximately 66\% of introduced mutations are successfully detected by the test suite. Most packages scored a mutant coverage of around 52-73\% for the interquartile range and a median of 0.61.
+\subsubsection{\textit{\textbf{Line Coverage:}}}
+The overall line coverage for the project is relatively good, with most packages achieving a line coverage of around 74-86\% for the interquartile range and a median of 0.79. The line coverage is at 77\%, suggesting that tests cover a substantial portion of the codebase. Ranging from 38\% (for just one datapoint) to 100 line coverage rate across all different packages indicates that a substantial portion of the code is covered by tests.
+\subsubsection{\textit{\textbf{Test Strength:}}}
+The test strength metric is at 83\%, which is a custom metric that seems to indicate a strong test suite.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+	\pgfplotstableread[col sep=comma]{pitest_data.csv}\csvdata
+	% Boxplot groups columns, but we want rows
+	\pgfplotstabletranspose\datatransposed{\csvdata} 
+	\begin{axis}[
+		boxplot/draw direction = y,
+		x axis line style = {opacity=0},
+		axis x line* = bottom,
+		axis y line = left,
+		enlarge y limits,
+		ymajorgrids,
+		xtick = {1, 2, 3},
+		xticklabel style = {align=center, font=\small, rotate=60},
+		xticklabels = {Line Coverage, Mutation Coverage, Test Strength},
+		xtick style = {draw=none}, % Hide tick line
+		ylabel = {Percentage \%},
+        ytick = {10,20,30,40,50,60,70,80,90,100}    
+	]
+		\foreach \n in {1,...,3} {
+			\addplot+[boxplot, fill, draw=black] table[y index=\n] {\datatransposed};
+		}
+	\end{axis}
+ \end{tikzpicture}
+ \caption{Distribution of percentages across the 3 different metrics}
+\end{figure}
+
+For some packages, such as \textbf{.formats.jpeg.decoder}, \textbf{.formats.
+tiff.datareaders} and \textbf{.mylzw} the mutation coverage is notably high, suggesting a strong ability to detect mutations.
+Some packages, like 
+\textbf{.png.transparencyfilters} and \textbf{.icc} have lower mutation coverage. It might be worth investigating whether there are opportunities to improve test coverage in these areas.
+The \textbf{.internal} package has relatively low line coverage, and it could benefit from additional tests.
+
+In the future it should be considered focusing on packages with lower mutation coverage and line coverage to improve the overall robustness of the test suite and explore specific mutations that were not covered to understand if they represent edge cases that should be addressed in the tests.
+
+
 
 \subsection{Java Microbenchmark Harness}
 JMH\cite{jmh} is a powerful tool specifically designed for benchmarking Java code, allowing us to meticulously analyze the performance of our compression algorithms.
@@ -386,11 +462,104 @@ The negative value of Cliff's Delta, with a moderate magnitude, suggests a moder
 
 
 \section{Automated Generation of Test Cases}
-TODO
+Automated test generation is a critical aspect of ensuring software dependability and quality. In this context, we employed EvoSuite, a powerful Java-based tool utilizing genetic algorithms for test case generation, in our exploration of enhancing the test suite for the Apache Commons Imaging project.
 
 \subsection{EvoSuite}
-TODO
+Evosuite\cite{evosuite} is a Java automated test generation tool utilizing genetic algorithms to maximize code coverage. Seamlessly integrating with JUnit, it supports parameterized testing, state-based testing, and automatic mock object generation. Evosuite's versatility extends to command line usage and IDE integration, offering an efficient solution for automating high-quality unit tests in Java applications.
 
+Through the utilization of Evosuite, we successfully generated automated tests for the classes within the Apache Commons Imaging project. As assessed by OpenClover, a tool offering both line and branch coverage metrics, the outcomes revealed:
+
+\subsubsection{\textbf{Default Coverage Criteria:}}
+
+ \begin{itemize}
+    \item Code Coverage Boost: Increased from 73.9\% to 76.3\% with automated tests.
+    \item Tests Generated: A total of 584 tests were automatically generated.
+ \end{itemize}
+
+\subsubsection{\textbf{Branch Coverage Criteria:}}
+
+ \begin{itemize}
+    \item Code Coverage Boost: Increased from 73.9\% to 77.6\% with automated tests.
+    \item Tests Generated: A total of 726 tests were automatically generated.
+ \end{itemize}
+
+\subsubsection{\textbf{Wilcoxon Results:}}
+
+ \begin{itemize}
+        \item Wilcoxon Size: 0.015973411027052232
+        \item Wilcoxon Length: 0.00891931775884413
+        \item Wilcoxon Score: 0.20010965436042927
+ \end{itemize}
+
+\textbf{Summary}
+
+The experiment involved utilizing Evosuite for automated test generation in the Apache Commons Imaging project, comparing results between Default Coverage Criteria and Branch Coverage Criteria.
+
+\subsubsection{\textit{Default Criteria vs. Branch Criteria:}}
+
+\begin{itemize}
+    \item \textbf{Code Coverage Boost:} The Branch Criteria outperformed Default Criteria, resulting in an increase from 73.9\% to 77.6\%.
+    \item \textbf{Test Generation:} Branch Criteria led to the generation of 726 tests, surpassing the 584 tests generated by Default Criteria.
+\end{itemize}
+
+The Wilcoxon test results indicate statistically significant differences between the two criteria, emphasizing the effectiveness of Branch Coverage Criteria in improving code coverage and test suite quality.
+
+These findings suggest that adopting Branch Coverage Criteria in Evosuite for the Apache Commons Imaging project yields better results compared to the Default Criteria.
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \pgfplotstableread[col sep=comma]{evosuite_data_default.csv}\csvdata
+        % Boxplot groups columns, but we want rows
+        \pgfplotstabletranspose\datatransposed{\csvdata}
+        \begin{axis}[
+            boxplot/draw direction = y,
+            x axis line style = {opacity=0},
+            axis x line* = bottom,
+            axis y line = left,
+            enlarge y limits,
+            ymajorgrids,
+            xtick = {1, 2, 3},
+            xticklabel style = {align=center, font=\small, rotate=60},
+            xticklabels = {Size, Length, Mutation Score},
+            xtick style = {draw=none}, % Hide tick line
+            ylabel = {},
+            ytick = {0,5,10,15,20,25,30,35,40}
+        ]
+            \foreach \n in {1,...,3} {
+                \addplot+[boxplot, fill, draw=black] table[y index=\n] {\datatransposed};
+            }
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Results for Size, Length, and Mutation Score for Default Criteria.}
+\end{figure}
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \pgfplotstableread[col sep=comma]{evosuite_data_branch.csv}\csvdata
+        % Boxplot groups columns, but we want rows
+        \pgfplotstabletranspose\datatransposed{\csvdata}
+        \begin{axis}[
+            boxplot/draw direction = y,
+            x axis line style = {opacity=0},
+            axis x line* = bottom,
+            axis y line = left,
+            enlarge y limits,
+            ymajorgrids,
+            xtick = {1, 2, 3},
+            xticklabel style = {align=center, font=\small, rotate=60},
+            xticklabels = {Size, Length, Mutation Score},
+            xtick style = {draw=none}, % Hide tick line
+            ylabel = {},
+            ytick = {0,5,10,15,20,25,30,35,40}
+        ]
+            \foreach \n in {1,...,3} {
+                \addplot+[boxplot, fill, draw=black] table[y index=\n] {\datatransposed};
+            }
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Results for Size, Length, and Mutation Score for Branch Criteria.}
+\end{figure}
 
 \section{Software Vulnerabilities}
 Software vulnerabilities are weaknesses or flaws in a program that could be exploited by an attacker to compromise the integrity, confidentiality, or availability of the system. These vulnerabilities can exist at various layers of the software, from design errors to implementation flaws. It is crucial to address and fix these vulnerabilities to ensure the security of the software.
@@ -490,12 +659,38 @@ We conducted the analysis with FindSecBugs and identified two security bugs rela
 
 FindSecBugs references these types of vulnerabilities as the inappropriate storage of cryptographic keys in the source code. Given that source code can be widely distributed, especially in enterprise or open-source environments, it is not secure to include passwords and secret keys directly in the code. For secure management, passwords and secret keys should be stored in separate configuration files or keystores. (Note: Hard-coded passwords are addressed separately through the Hard-coded password pattern)
 
-\section{Discussion}
-TODO
+\section{Conclusions}
 
-\section{Conclusion}
-TODO
+\subsection{\textbf{\textit{Holistic Testing Approach:}}}
+   \begin{itemize}
+       \item The integration of CodeCov, Pitest, and JMH benchmarks provides a comprehensive understanding of the Apache Commons Imaging project's testing landscape and performance efficiency.
+       \item CodeCov analysis reveals a commendable overall code coverage, with targeted tests enhancing coverage and demonstrating a commitment to fortifying the software's robustness.
+       \item Pitest analysis showcases strong mutation coverage, emphasizing the effectiveness of targeted tests in detecting controlled mutations.
+       \item JMH benchmarks allowed identifying critical performance improvements. Through the adoption of concurrency, it was possible to significantly enhance throughput and expedite test scenario execution.
+   \end{itemize}
 
+\subsection{\textbf{\textit{Advanced Test Generation Techniques:}}}
+   \begin{itemize}
+       \item Evosuite's integration into the testing workflow proves highly effective, demonstrating its ability to maximize code coverage and generate high-quality automated tests for the Apache Commons Imaging project.
+       \item Branch Coverage Criteria outperforms Default Criteria, resulting in a substantial code coverage boost and the generation of a greater number of tests.
+       \item Statistical analysis, including the Wilcoxon test, supports the conclusion that adopting Branch Coverage Criteria yields superior results, emphasizing the practical relevance of these improvements.
+   \end{itemize}
+
+\subsection{\textbf{\textit{Dependency Management and Security Practices:}}}
+   \begin{itemize}
+       \item The OWASP Dependability Checker analysis provides insights into crucial dependencies of the project, highlighting their significance and indicating high-confidence dependencies.
+       \item No vulnerabilities are reported, affirming the robustness of current dependency management.
+       \item FindSecBugs identifies security bugs related to hard-coded keys, emphasizing the critical need for secure cryptographic key management practices. The recommended approach includes storing passwords and secret keys in separate configuration files or keystores.
+   \end{itemize}
+
+\subsection{\textbf{\textit{Overall Project Recommendations and Future Research Directions:}}}
+   \begin{itemize}
+       \item The project should continue its commitment to comprehensive testing by leveraging CodeCov, Pitest, and JMH benchmarks, addressing specific areas identified for improvement.
+       \item Evosuite's advanced test generation capabilities should be further utilized, with a focus on Branch Coverage Criteria for enhanced code coverage and test quality.
+       \item Dependency management practices are commendable, and ongoing vigilance is recommended to address potential security risks.
+       \item Implementation of FindSecBugs recommendations is crucial, emphasizing the separation of cryptographic keys from the source code to enhance security.
+       
+   \end{itemize}
 %%
 %% The acknowledgments section is defined using the "acks" environment
 %% (and NOT an unnumbered section). This ensures the proper
@@ -515,13 +710,4 @@ To the group, for always bringing "mate" while working.
 %%
 %% If your work has an appendix, this is the place to put it.
 \appendix
-
-\section{Research Methods}
-
-\subsection{Part One}
-TODO
-
-\section{Online Resources}
-TODO
-
 \end{document}
