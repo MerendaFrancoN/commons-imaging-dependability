@@ -200,11 +200,14 @@
                     </dependency>
                 </dependencies>
                 <configuration>
+                    <mutators>
+                        <mutator>STRONGER</mutator>
+                    </mutators>
                     <targetClasses>
                         <param>org.apache.commons.imaging.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>org.apache.commons.imaging.test.*</param>
+                        <param>org.apache.commons.imaging.*</param>
                     </targetTests>
                 </configuration>
             </plugin>
@@ -244,7 +247,7 @@
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <configuration>
                         <excludePackageNames>
-                            org.apache.commons.imaging.formats.psd.*:org.apache.commons.imaging.formats.png.*
+                            org.apache.commons.imaging.formats.psd.:org.apache.commons.imaging.formats.png.
                         </excludePackageNames>
                         <source>8</source>
                     </configuration>
