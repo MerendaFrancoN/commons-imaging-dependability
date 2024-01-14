@@ -138,7 +138,7 @@
 \begin{abstract}
   This paper presents a comprehensive analysis of software dependability in the context of the Apache Commons Imaging project, a vital component of the Apache Commons IO ecosystem. The study employs a multifaceted approach, leveraging software analytics, testing tools, and vulnerability assessment techniques to evaluate and enhance the dependability and code quality of the project.
 
-  The analysis begins with an exploration of SonarCloud, delving into the identification and resolution of bugs. Subsequently, various software testing tools, including JaCoCo, CodeCov, PiTest, EvoSuite, and Randoop, are employed to assess code coverage, mutation testing, and automated test case generation. The study extends to vulnerability checking using OWASP Dependability Checker and FindSecBugs.
+  The analysis begins with an exploration of SonarCloud, delving into the identification and resolution of bugs. Subsequently, various software testing tools, including JaCoCo, CodeCov, PiTest, and EvoSuite, are employed to assess code coverage, mutation testing, and automated test case generation. The study extends to vulnerability checking using OWASP Dependability Checker and FindSecBugs.
   
   Results showcase improvements in code quality, increased code coverage, and the identification and remediation of software vulnerabilities. The paper contributes valuable insights into the efficacy of diverse tools and methodologies in ensuring software dependability. Through this investigation, we aim to provide a nuanced understanding of the strengths and limitations of each approach, offering guidance for future endeavors in the pursuit of reliable and robust software systems.
 \end{abstract}
@@ -176,7 +176,7 @@
 %%
 %% Keywords. The author(s) should pick words that accurately describe
 %% the work being presented. Separate the keywords with commas.
-\keywords{Software Dependability, Apache Commons Imaging, Software Analytics, SonarCloud, Software Testing Tools, Code Coverage, JaCoCo, CodeCov, Mutation Testing, PiTest, Java Microbenchmark Harness, JMH,  Automated Test Case Generation, EvoSuite, Randoop, Software Vulnerabilities, OWASP Dependability Checker, FindSecBugs, Bug Fixing, Code Quality, Software Engineering}
+\keywords{Software Dependability, Apache Commons Imaging, Software Analytics, SonarCloud, Software Testing Tools, Code Coverage, JaCoCo, CodeCov, Mutation Testing, PiTest, Java Microbenchmark Harness, JMH,  Automated Test Case Generation, EvoSuite, Software Vulnerabilities, OWASP Dependability Checker, FindSecBugs, Bug Fixing, Code Quality, Software Engineering}
 
 %% \received{20 February 2007}
 %% \received[revised]{12 March 2009}
@@ -188,32 +188,23 @@
 \maketitle
 
 \section{Introduction}
-The concept of software dependability, integral to the fabric of modern computing, has evolved dramatically, underscored by a rich history and the development of complex, multifaceted principles. This journey begins in the era of early mainframes, marked by the efforts to enhance the reliability of these machines for crucial calculations in business and scientific fields. F.P. Brooks Jr., in his seminal work "The Mythical Man-Month," highlighted the inherent complexities in software development, setting the stage for the future discourse on software dependability [1].
+The evolution of software dependability, intrinsic to modern computing, spans from mainframes to interconnected networks, broadening its focus on reliability, fault tolerance, security, and safety. Pioneering works in the 1980s emphasized redundancy techniques like Triple-Modular Redundancy. Shifting to the 1990s, the spotlight turned to security and safety, addressing cyber threats in banking and hazards prevention in healthcare software. Software dependability encompasses reliability, availability, safety, security, maintainability, and fault tolerance. Recent years witnessed increased complexity in cloud computing and IoT, necessitating innovative approaches. Avizienis, Laprie, Randell, and Landwehr emphasized the role of fault tolerance. Ongoing contributions underscore the evolution of these principles. As technology advances, software dependability will continue to evolve, balancing functionality, performance, and societal impact in interconnected systems.
 
-As computing systems evolved from monolithic mainframes to interconnected networks, the focus on software dependability widened to encompass not only reliability but also fault tolerance, security, and safety. The 1980s, marked by the introduction of distributed systems, brought forth new challenges in ensuring the dependability of interconnected software systems. R.E. Lyons and W. Vanderkulk, in their pioneering work, emphasized the importance of using redundancy techniques, like Triple-Modular Redundancy, to improve the reliability of these systems [2]. For example, in critical applications like aviation control systems, the implementation of such redundancy techniques ensured uninterrupted operation even in the face of hardware failures.
+In the contemporary technological landscape, software systems play a pivotal role across diverse domains, shaping both personal and societal interactions. The escalating reliance on software underscores the critical need for dependability in these systems. This paper embarks on a comprehensive exploration of software dependability, covering diverse aspects such as project analysis, testing tools, and vulnerability checks.
 
-In the 1990s, with the increasing dependence on software for critical infrastructure and sensitive data management, the focus shifted towards security and safety. D. Gollmann's work on computer security provided foundational insights into protecting software systems in an interconnected world, addressing threats such as unauthorized data access and cyber-attacks [3]. A practical illustration of these principles can be seen in modern banking systems, where robust security protocols are essential to protect financial transactions from cyber threats.
+Commencing with an overview of Apache Commons Imaging \cite{apache-commons-imaging}, a project within the Apache Commons IO ecosystem, this paper sets the foundation for subsequent analyses. Insights into the project's structure are provided, offering context to the broader discussions on software dependability.
 
-N.G. Leveson's research on system safety brought attention to the need to prevent software-induced hazards, especially in high-stakes environments like healthcare systems, where software errors could have life-threatening consequences [4]. For instance, the safeguarding mechanisms in medical devices such as pacemakers epitomize the critical role of software safety.
+Moving forward, Software Analytics takes center stage, delving into bug identification and fixes. This meticulous analysis provides a nuanced understanding of software quality and dependability through advanced analytical tools.
 
-The concept of software dependability encompasses several key attributes, including reliability, availability, safety, security, maintainability, and fault tolerance. Reliability, as M.R. Lyu describes, refers to the software's ability to perform its intended functions without failure over a specified period [5]. In the context of e-commerce platforms, for instance, high reliability ensures seamless transaction processing and user experience.
+The exploration of Software Testing Tools follows, encompassing crucial tools like JaCoCo and CodeCov. The analysis spans code coverage evaluations before and after bug fixes, augmented by insights from Mutation Testing and Java Microbenchmark Harness.
 
-Availability, focusing on the readiness for correct service, is crucial in environments demanding constant uptime, such as in online streaming services where users expect continuous access to content [6]. Safety involves ensuring that software operation does not lead to unacceptable risks or harm. An example of this is in automotive software, where safety-critical systems must prevent accidents in case of software failures [4].
+The next section focuses on the Automated Generation of Test Cases, using a tool named EvoSuite. This section probes the efficacy of these tools in generating meaningful test cases, aligning with the overarching theme of software dependability.
 
-Security, as outlined by Gollmann, is about protecting software systems from unauthorized access, a principle crucial in safeguarding personal data in social media platforms [3]. Maintainability, though less visible, involves the ease of modifying software to fix faults or adapt to new environments, exemplified in the regular updates and patches released for operating systems [7]. Fault tolerance, the ability to maintain operational functionality in the event of partial system failures, is exemplified in cloud computing environments where data redundancy and backup systems ensure service continuity [8].
+The critical dimension of Software Vulnerabilities is dissected, providing a brief overview of tools like OWASP Dependability Checker and FindSecBugs. Practical insights into running these tools, fixing identified bugs, and engaging in insightful discussions enrich this section.
 
-A. Avizienis, J.-C. Laprie, B. Randell, and C. Landwehr, in their comprehensive work, expounded on the concept of fault tolerance, emphasizing its critical role in ensuring continuous system operation even when parts fail [8]. This principle is vividly illustrated in the field of space exploration, where spacecraft and satellite systems must remain operational despite the harsh conditions of space and potential component malfunctions. For instance, the Mars rovers are designed with multiple redundant systems, allowing them to continue missions even when certain subsystems fail.
+The ensuing discussion section serves as a platform to scrutinize findings, highlight encountered challenges, and address pivotal issues in the realm of software dependability.
 
-In recent years, the advent of cloud computing and the Internet of Things (IoT) has further expanded the scope and complexity of software dependability. Cloud computing, with its distributed nature and reliance on remote servers, underscores the importance of maintainability and fault tolerance. An example of this is seen in cloud storage services, where data is replicated across multiple servers to ensure availability and integrity, even in the event of hardware failures or network issues [9].
-
-The IoT, which integrates software into everyday objects and devices, brings new challenges in ensuring the dependability of software that directly interacts with the physical world. In smart home systems, for example, the dependability of software controlling heating, lighting, and security systems is crucial for both convenience and safety.
-
-B. Randell's work on system structure for software fault tolerance and J.C. Laprie's exploration of dependable computing highlights the ongoing evolution of software dependability principles in response to these technological advancements [10][11]. They underscore the need for innovative approaches to maintain the dependability of increasingly complex and interconnected software systems.
-
-As we look towards the future, the principles of software dependability will continue to evolve, driven by emerging technologies and the ever-growing dependence on software in all facets of life. The journey from the early mainframes to today's interconnected, intelligent systems reflects a continual quest to balance functionality, performance, and dependability. The field remains dynamic, challenging, and essential, with ongoing research and development needed to address the complexities of modern software systems and their critical role in society.
-
-
-The ongoing advancements in technology, rising complexity of software, and its critical role in societal functions, as highlighted by B. Randell and J.C. Laprie, make the study of software dependability more relevant than ever [9][10]. Today, as software systems become increasingly intricate and integral to all aspects of life, from personal devices to global networks, the principles of software dependability continue to evolve, necessitating ongoing research and adaptation.
+In conclusion, this paper synthesizes a multifaceted exploration of software dependability, transcending traditional boundaries. Covering project analysis, analytics, testing tools, and vulnerability checks, it encapsulates the essence of reliability, security, and robustness in software systems.
 
 \subsection{Apache Commons Imaging}
 Apache Commons Imaging is a powerful open-source Java library that resides within the Apache Commons project. This library focuses on simplifying the complexities of image processing for Java developers. Boasting support for a diverse range of image formats, including popular ones such as JPEG, PNG, GIF, BMP, and TIFF, provides a versatile toolkit for developers working with images.
@@ -236,7 +227,7 @@ In conclusion, Apache Commons Imaging stands out as an essential tool for Java d
 
 After analyzing the commons-imaging-dependability project on SonarCloud, we found the following issues in the code:
 
-\textbf{High → 109}
+\textbf{High → 54}
 
 In the high category, several errors are related to divisions where the divisor is not checked for the possibility of being 0. Therefore, if the divisor is 0, the code would throw an exception. There are also errors of the type where referencing a static member of a subclass from its parent during class initialization makes the code more fragile and prone to future errors. The program's execution will largely depend on the order of class and static member initialization.
 
@@ -506,11 +497,24 @@ The Wilcoxon test results indicate statistically significant differences between
 
 These findings suggest that adopting Branch Coverage Criteria in Evosuite for the Apache Commons Imaging project yields better results compared to the Default Criteria.
 
-\subsection{Randoop}
-TODO
 
 \section{Software Vulnerabilities}
-TODO
+Software vulnerabilities are weaknesses or flaws in a program that could be exploited by an attacker to compromise the integrity, confidentiality, or availability of the system. These vulnerabilities can exist at various layers of the software, from design errors to implementation flaws. It is crucial to address and fix these vulnerabilities to ensure the security of the software.
+
+
+Common Types of Vulnerabilities in Apache Commons Imaging:
+
+\begin{itemize}
+    \item \textbf{\textit{Data Injection:}} This can occur when external input is not properly filtered or validated, allowing an attacker to inject malicious code.
+    
+    \item \textbf{\textit{Buffer Overflow:}} This type of vulnerability occurs when the allotted storage capacity for a buffer is exceeded, enabling an attacker to overwrite surrounding memory.
+    
+    \item \textbf{\textit{Inadequate Validation:}} Lack of input validation can lead to security issues. For example, if a user's authenticity is not verified before executing a critical operation.
+    
+    \item \textbf{\textit{Authentication and Authorization Issues:}} Failures in authentication or authorization mechanisms may allow unauthorized users to access sensitive resources or functions.
+    
+    \item \textbf{\textit{Incorrect Error Handling:}} Improper error handling can expose sensitive information or allow an attacker to discover weaknesses in the system.
+\end{itemize}
 
 \subsection{OWASP Dependability Checker}
 Upon conducting a comprehensive analysis using Owasp Dependency Checker\cite{owasp-dependency-check} version 9.0.4, the findings reveal crucial insights into the project's dependencies.
@@ -580,7 +584,17 @@ These findings serve as a basis for further investigation and remediation effort
 
 
 \subsection{FindSecBugs (SpotBug)}
-TODO
+
+We conducted the analysis with FindSecBugs and identified two security bugs related to hard-coded keys. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\linewidth]{reportFindSecBugs.png}
+    \caption{Report before fix}
+    \label{fig:enter-label}
+\end{figure}
+
+FindSecBugs references these types of vulnerabilities as the inappropriate storage of cryptographic keys in the source code. Given that source code can be widely distributed, especially in enterprise or open-source environments, it is not secure to include passwords and secret keys directly in the code. For secure management, passwords and secret keys should be stored in separate configuration files or keystores. (Note: Hard-coded passwords are addressed separately through the Hard-coded password pattern)
 
 \section{Discussion}
 TODO
