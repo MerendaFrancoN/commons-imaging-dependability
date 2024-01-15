@@ -1,7 +1,11 @@
 \documentclass[sigconf]{acmart}
-% Removed Fake Conference information
+
+% Remove Fake Conference information
 \settopmatter{printacmref=false} % Removes citation information below abstract
+\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in
 \pagestyle{plain} % removes running headers
+\acmDOI{}
+
 
 \usepackage{pgfplots}
 \usepackage{placeins}  % Required for \FloatBarrier
@@ -49,14 +53,10 @@
 \setcopyright{acmcopyright}
 \copyrightyear{2023}
 \acmYear{2023}
-\acmDOI{XXXXXXX.XXXXXXX}
+\acmDOI{}
 
-%% These commands are for a PROCEEDINGS abstract or paper.
-\acmConference[Conference acronym 'XX]{Make sure to enter the correct
-  conference title from your rights confirmation emai}{June 03--05,
-  2018}{Woodstock, NY}
-\acmPrice{15.00}
-\acmISBN{978-1-4503-XXXX-X/18/06}
+% To remove fake conference data
+\acmConference[]{}{}{, }
 
 
 %%
@@ -257,7 +257,7 @@ Out of these 63 errors, most are related to the suggestion to remove a left shif
 
 \subsection{Bugs Fixed}
 
-To organize our tasks based on the errors found in \textbf{SonarCloud}\cite{sonarcloud}, we created tasks in \textbf{JIRA}\cite{jira}, and each of them was assigned to the three members of the group. We attempted to address the majority of the 119 issues related to reliability, of which we were able to fix XX.
+To organize our tasks based on the errors found in \textbf{SonarCloud}\cite{sonarcloud}, we created tasks in \textbf{JIRA}\cite{jira}, and each of them was assigned to the three members of the group. We attempted to address the majority of the 119 issues related to reliability, of which we were able to fix 29.
 
 \begin{figure}[h!]
     \centering
@@ -467,7 +467,7 @@ Automated test generation is a critical aspect of ensuring software dependabilit
 \subsection{EvoSuite}
 Evosuite\cite{evosuite} is a Java automated test generation tool utilizing genetic algorithms to maximize code coverage. Seamlessly integrating with JUnit, it supports parameterized testing, state-based testing, and automatic mock object generation. Evosuite's versatility extends to command line usage and IDE integration, offering an efficient solution for automating high-quality unit tests in Java applications.
 
-Through the utilization of Evosuite, we successfully generated automated tests for the classes within the Apache Commons Imaging project. As assessed by OpenClover, a tool offering both line and branch coverage metrics, the outcomes revealed:
+Through the utilization of Evosuite, we successfully generated automated tests for the classes within the Apache Commons Imaging project. As assessed by OpenClover\cite{openclover}, a tool offering both line and branch coverage metrics, the outcomes revealed:
 
 \subsubsection{\textbf{Default Coverage Criteria:}}
 
@@ -505,7 +505,7 @@ The experiment involved utilizing Evosuite for automated test generation in the 
 The Wilcoxon test results indicate statistically significant differences between the two criteria, emphasizing the effectiveness of Branch Coverage Criteria in improving code coverage and test suite quality.
 
 These findings suggest that adopting Branch Coverage Criteria in Evosuite for the Apache Commons Imaging project yields better results compared to the Default Criteria.
-
+\FloatBarrier
 \begin{figure}
     \centering
     \begin{tikzpicture}
