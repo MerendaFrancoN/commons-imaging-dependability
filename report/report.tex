@@ -1,7 +1,11 @@
 \documentclass[sigconf]{acmart}
-% Removed Fake Conference information
+
+% Remove Fake Conference information
 \settopmatter{printacmref=false} % Removes citation information below abstract
+\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in
 \pagestyle{plain} % removes running headers
+\acmDOI{}
+
 
 \usepackage{pgfplots}
 \usepackage{placeins}  % Required for \FloatBarrier
@@ -49,14 +53,9 @@
 \setcopyright{acmcopyright}
 \copyrightyear{2023}
 \acmYear{2023}
-\acmDOI{XXXXXXX.XXXXXXX}
+\acmDOI{}
 
-%% These commands are for a PROCEEDINGS abstract or paper.
-\acmConference[Conference acronym 'XX]{Make sure to enter the correct
-  conference title from your rights confirmation emai}{June 03--05,
-  2018}{Woodstock, NY}
-\acmPrice{15.00}
-\acmISBN{978-1-4503-XXXX-X/18/06}
+\acmConference[]{}{}{, }
 
 
 %%
